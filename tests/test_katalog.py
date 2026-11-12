@@ -28,3 +28,13 @@ def test_markdown_und_deutschland():
     md = katalog.als_markdown([b for _, b in katalog.lade_alle()], "muster-ag.ch", sz=True)
     assert "muster-ag.ch" in md and "{domain}" not in md
     assert "Maßnahme" in md and "«" not in md
+
+
+def test_sysreptor_format():
+    vorlagen = katalog.als_sysreptor([b for _, b in katalog.lade_alle()])
+    v = vorlagen[0]
+    assert set(v) == {"tags", "translations"}
+    tr = v["translations"][0]
+    assert tr["language"] == "de-DE" and tr["is_main"] is True and tr["status"] in ("in-progress", "finished")
+    assert {"title", "summary", "description", "impact", "recommendation", "references"} <= set(tr["data"])
+    assert all("{domain}" not in str(x["translations"][0]["data"]) for x in vorlagen)

@@ -1,0 +1,26 @@
+id: WEB-HSTS-FEHLT
+version: 1
+status: entwurf
+kategorie: Web
+schweregrad: niedrig
+cwe: CWE-319
+titel:
+  de: HTTP Strict Transport Security (HSTS) fehlt oder ist zu kurz
+  en: HTTP Strict Transport Security (HSTS) missing or too short
+  es: Falta HSTS o su duración es demasiado corta
+geschaeftsleitung: >-
+  Besucher Ihrer Webseite könnten in einem fremden WLAN auf eine unverschlüsselte
+  Verbindung umgeleitet werden.
+beschreibung: >-
+  Die Webseite https://{domain}/ sendet keinen Strict-Transport-Security-Header oder
+  einen mit max-age unter 180 Tagen.
+auswirkung: >-
+  Ein Angreifer im selben Netz kann die erste unverschlüsselte Anfrage abfangen und die
+  Verbindung auf HTTP halten (SSL-Stripping), um Eingaben mitzulesen.
+empfehlung: >-
+  Header «Strict-Transport-Security: max-age=31536000; includeSubDomains» setzen, sobald
+  alle Subdomains per HTTPS erreichbar sind. Optional danach HSTS-Preload beantragen.
+pruefen: curl -sI https://{domain}/ | grep -i strict-transport
+referenzen:
+  - RFC 6797 – HTTP Strict Transport Security (HSTS)
+  - OWASP WSTG-CONF-07

@@ -1,0 +1,27 @@
+id: DMARC-KEIN-RUA
+version: 1
+status: entwurf
+kategorie: E-Mail
+schweregrad: niedrig
+cwe: CWE-778               # Insufficient Logging
+titel:
+  de: Keine DMARC-Berichte (rua) konfiguriert
+  en: No DMARC aggregate reports (rua) configured
+  es: No se reciben informes DMARC (rua)
+geschaeftsleitung: >-
+  Sie erfahren nicht, wer E-Mails in Ihrem Namen verschickt – weder Betrüger noch
+  eigene Dienste, deren E-Mails im Spam landen.
+beschreibung: >-
+  Der DMARC-Eintrag der Domain {domain} enthält kein «rua»-Tag. Empfangende Mailserver
+  senden daher keine Sammelberichte über die Ergebnisse der SPF-, DKIM- und DMARC-Prüfung.
+auswirkung: >-
+  Fälschungsversuche bleiben unbemerkt. Ausserdem fehlt die Grundlage, um die Richtlinie
+  sicher auf p=quarantine oder p=reject zu erhöhen, ohne legitime E-Mails abzuweisen.
+empfehlung: >-
+  rua=mailto:<adresse> ergänzen (eigenes Postfach oder ein DMARC-Auswertungsdienst) und
+  die Berichte regelmässig auswerten. Liegt die Adresse in einer fremden Domain, muss diese
+  den Empfang per DNS-Eintrag erlauben (RFC 7489, Abschnitt 7.1).
+pruefen: dig TXT _dmarc.{domain} +short | grep rua
+referenzen:
+  - RFC 7489, Abschnitt 7 (Reporting)
+  - https://www.rfc-editor.org/rfc/rfc7489#section-7

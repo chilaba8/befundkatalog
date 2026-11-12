@@ -1,0 +1,24 @@
+id: WEB-SECURITYTXT-FEHLT
+version: 1
+status: entwurf
+kategorie: Web
+schweregrad: info
+titel:
+  de: Keine security.txt veröffentlicht
+  en: No security.txt published
+  es: No se publica security.txt
+geschaeftsleitung: >-
+  Wer eine Sicherheitslücke bei Ihnen findet, weiss nicht, wem er sie melden soll.
+beschreibung: >-
+  Unter https://{domain}/.well-known/security.txt ist keine Datei mit Kontaktangaben
+  für Sicherheitsmeldungen vorhanden.
+auswirkung: >-
+  Meldungen gutwilliger Finder gehen verloren oder landen bei falschen Stellen;
+  Schwachstellen bleiben länger offen.
+empfehlung: >-
+  Datei /.well-known/security.txt mit mindestens «Contact:» und «Expires:» anlegen,
+  optional «Preferred-Languages: de, en» und einen Link auf eine Melde-Richtlinie.
+pruefen: curl -s https://{domain}/.well-known/security.txt
+referenzen:
+  - RFC 9116 – A File Format to Aid in Security Vulnerability Disclosure
+  - https://securitytxt.org

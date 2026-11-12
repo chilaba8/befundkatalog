@@ -1,0 +1,24 @@
+id: WEB-TLS-ALT
+version: 1
+status: entwurf
+kategorie: Web
+schweregrad: mittel
+cwe: CWE-327               # Use of a Broken or Risky Cryptographic Algorithm
+titel:
+  de: Veraltete TLS-Versionen 1.0/1.1 aktiviert
+  en: Deprecated TLS 1.0/1.1 enabled
+  es: Versiones obsoletas TLS 1.0/1.1 activadas
+geschaeftsleitung: >-
+  Ihre Webseite erlaubt noch veraltete Verschlüsselung, die seit Jahren als unsicher gilt.
+beschreibung: >-
+  Der Webserver von {domain} akzeptiert Verbindungen mit TLS 1.0 und/oder TLS 1.1. Beide
+  Versionen sind seit 2021 offiziell veraltet (RFC 8996).
+auswirkung: >-
+  Ältere Protokolle und ihre Cipher-Suites sind anfällig für bekannte Angriffe und
+  erfüllen gängige Vorgaben (z. B. PCI DSS) nicht mehr.
+empfehlung: >-
+  TLS 1.0 und 1.1 deaktivieren; nur TLS 1.2 und 1.3 mit aktuellen Cipher-Suites erlauben.
+pruefen: openssl s_client -connect {domain}:443 -tls1_1 </dev/null
+referenzen:
+  - RFC 8996 – Deprecating TLS 1.0 and TLS 1.1
+  - https://www.rfc-editor.org/rfc/rfc8996

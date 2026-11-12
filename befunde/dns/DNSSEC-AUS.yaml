@@ -1,0 +1,28 @@
+id: DNSSEC-AUS
+version: 1
+status: entwurf
+kategorie: DNS
+schweregrad: niedrig
+cwe: CWE-345
+titel:
+  de: DNSSEC nicht aktiviert
+  en: DNSSEC not enabled
+  es: DNSSEC no activado
+geschaeftsleitung: >-
+  Die Antworten des Telefonbuchs des Internets (DNS) für Ihre Domain sind nicht
+  digital unterschrieben und könnten unterwegs gefälscht werden.
+beschreibung: >-
+  Für die Zone {domain} ist bei der Registry kein DS-Eintrag hinterlegt und die Zone
+  liefert keine DNSKEY-Einträge. Validierende Resolver können die Echtheit der Antworten
+  nicht prüfen.
+auswirkung: >-
+  Angreifer mit Zugriff auf den Netzweg oder einen Resolver können gefälschte DNS-
+  Antworten unterschieben (DNS-Spoofing, Cache-Poisoning) und z. B. Besucher oder
+  E-Mails auf eigene Server umleiten.
+empfehlung: >-
+  DNSSEC beim DNS-Anbieter aktivieren und den DS-Eintrag an die Registry übermitteln
+  (bei vielen Anbietern automatisch). Danach mit einem validierenden Resolver prüfen.
+pruefen: dig DS {domain} +short && dig DNSKEY {domain} +short
+referenzen:
+  - RFC 4033 – DNS Security Introduction and Requirements
+  - https://www.rfc-editor.org/rfc/rfc4033

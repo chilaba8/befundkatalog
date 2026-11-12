@@ -1,0 +1,27 @@
+id: SUB-UEBERNEHMBAR
+version: 1
+status: entwurf
+kategorie: DNS
+schweregrad: hoch
+cwe: CWE-672               # Operation on a Resource after Expiration or Release
+titel:
+  de: Subdomain zeigt auf gekündigten Dienst (Subdomain-Takeover möglich)
+  en: Subdomain points to deprovisioned service (subdomain takeover)
+  es: Subdominio apunta a un servicio dado de baja (subdomain takeover)
+geschaeftsleitung: >-
+  Eine Adresse Ihrer Domain zeigt auf einen Dienst, den Sie nicht mehr nutzen. Ein
+  Angreifer könnte dort eine eigene Seite unter Ihrem Namen betreiben.
+beschreibung: >-
+  Ein CNAME-Eintrag einer Subdomain von {domain} verweist auf einen Namen bei einem
+  Cloud- oder SaaS-Anbieter, der nicht mehr existiert. Bei vielen Anbietern kann ein
+  Dritter diesen Namen neu registrieren.
+auswirkung: >-
+  Übernahme der Subdomain: Phishing-Seiten unter der echten Firmendomain, Diebstahl von
+  Cookies der Hauptdomain (je nach Cookie-Konfiguration), Rufschaden.
+empfehlung: >-
+  Den CNAME-Eintrag sofort entfernen oder den Dienst wieder einrichten. Beim Kündigen
+  von Cloud-Diensten künftig immer zuerst den DNS-Eintrag löschen (Prozess/Inventar).
+pruefen: dig CNAME <subdomain>.{domain} +short && dig A <ziel> +short
+referenzen:
+  - OWASP WSTG – Test for Subdomain Takeover (WSTG-CONF-10)
+  - https://github.com/EdOverflow/can-i-take-over-xyz

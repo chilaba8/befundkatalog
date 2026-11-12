@@ -1,0 +1,29 @@
+id: MTASTS-FEHLT
+version: 1
+status: entwurf
+kategorie: E-Mail
+schweregrad: niedrig
+cwe: CWE-319               # Cleartext Transmission of Sensitive Information
+titel:
+  de: Keine MTA-STS-Richtlinie für eingehende E-Mails
+  en: No MTA-STS policy for inbound mail
+  es: Sin política MTA-STS para el correo entrante
+geschaeftsleitung: >-
+  Die Verschlüsselung der E-Mails, die an Ihre Firma gehen, ist nicht erzwungen.
+  Ein Angreifer im Netz könnte sie im Ausnahmefall unverschlüsselt mitlesen.
+beschreibung: >-
+  Für {domain} existiert kein TXT-Eintrag _mta-sts. Sendende Mailserver verwenden
+  STARTTLS daher opportunistisch: Unterdrückt ein Angreifer die STARTTLS-Ankündigung
+  (Downgrade), wird die E-Mail im Klartext zugestellt.
+auswirkung: >-
+  Vertrauliche Inhalte (Offerten, Personaldaten, Rechnungen) können auf dem Transportweg
+  mitgelesen oder an einen falschen Server umgeleitet werden.
+empfehlung: >-
+  MTA-STS einrichten: TXT-Eintrag _mta-sts.{domain} («v=STSv1; id=…») und Richtlinie unter
+  https://mta-sts.{domain}/.well-known/mta-sts.txt, zuerst «mode: testing» mit TLS-RPT-
+  Berichten, danach «mode: enforce». Die mx-Zeilen müssen alle MX-Server abdecken.
+pruefen: dig TXT _mta-sts.{domain} +short && curl -s https://mta-sts.{domain}/.well-known/mta-sts.txt
+referenzen:
+  - RFC 8461 – SMTP MTA Strict Transport Security (MTA-STS)
+  - RFC 8460 – SMTP TLS Reporting
+  - https://www.rfc-editor.org/rfc/rfc8461

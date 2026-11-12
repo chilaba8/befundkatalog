@@ -30,13 +30,21 @@ Texte sind in **Schweizer Schreibweise** (ss, «…»). Für Deutschland erzeugt
 
 ## Befunde
 
-| ID | Titel | Schweregrad |
-|---|---|---|
-| SPF-FEHLT | Kein SPF-Eintrag vorhanden | hoch |
-| SPF-ALL-OFFEN | SPF erlaubt allen Servern den Versand | kritisch |
-| DMARC-FEHLT | Kein DMARC-Eintrag vorhanden | hoch |
-| DMARC-P-NONE | DMARC nur im Beobachtungsmodus | hoch |
-| DKIM-NICHT-GEFUNDEN | Kein DKIM-Schlüssel unter gängigen Selektoren gefunden | mittel |
+| Kategorie | ID | Titel | Schweregrad |
+|---|---|---|---|
+| DNS | DNSSEC-AUS | DNSSEC nicht aktiviert | niedrig |
+| DNS | SUB-UEBERNEHMBAR | Subdomain zeigt auf gekündigten Dienst (Subdomain-Takeover möglich) | hoch |
+| E-Mail | AEHNLICH-MIT-MAIL | Ähnliche Domain mit E-Mail-Empfang registriert | mittel |
+| E-Mail | DKIM-NICHT-GEFUNDEN | Kein DKIM-Schlüssel unter gängigen Selektoren gefunden | mittel |
+| E-Mail | DMARC-FEHLT | Kein DMARC-Eintrag vorhanden | hoch |
+| E-Mail | DMARC-KEIN-RUA | Keine DMARC-Berichte (rua) konfiguriert | niedrig |
+| E-Mail | DMARC-P-NONE | DMARC nur im Beobachtungsmodus (p=none) | hoch |
+| E-Mail | MTASTS-FEHLT | Keine MTA-STS-Richtlinie für eingehende E-Mails | niedrig |
+| E-Mail | SPF-ALL-OFFEN | SPF erlaubt allen Servern den Versand (+all / ?all) | kritisch |
+| E-Mail | SPF-FEHLT | Kein SPF-Eintrag vorhanden | hoch |
+| Web | WEB-HSTS-FEHLT | HTTP Strict Transport Security (HSTS) fehlt oder ist zu kurz | niedrig |
+| Web | WEB-SECURITYTXT-FEHLT | Keine security.txt veröffentlicht | info |
+| Web | WEB-TLS-ALT | Veraltete TLS-Versionen 1.0/1.1 aktiviert | mittel |
 
 ## Werkzeuge
 
@@ -45,6 +53,8 @@ pip install pyyaml pytest
 python werkzeuge/katalog.py pruefen                              # Format prüfen
 python werkzeuge/katalog.py markdown --domain muster-ag.ch > b.md  # als Markdown
 python werkzeuge/katalog.py markdown --sz                         # Schreibweise Deutschland
+python werkzeuge/katalog.py sysreptor > vorlagen.json             # SysReptor-Vorlagen
+cat vorlagen.json | reptor template                                # in SysReptor hochladen
 pytest
 ```
 
