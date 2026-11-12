@@ -1,0 +1,31 @@
+id: DMARC-FEHLT
+version: 1
+status: entwurf
+kategorie: E-Mail
+schweregrad: hoch
+cwe: CWE-290
+titel:
+  de: Kein DMARC-Eintrag vorhanden
+  en: No DMARC record
+  es: No existe registro DMARC
+geschaeftsleitung: >-
+  Jemand kann E-Mails mit Ihrer Absenderadresse verschicken – zum Beispiel gefälschte
+  Rechnungen mit einer anderen Bankverbindung –, und viele davon kommen im Posteingang an.
+beschreibung: >-
+  Unter _dmarc.{domain} existiert kein TXT-Eintrag mit «v=DMARC1». Empfänger erhalten
+  keine Anweisung, wie mit E-Mails umzugehen ist, deren sichtbarer Absender (Header-From)
+  die Domain verwendet, aber SPF und DKIM nicht besteht.
+auswirkung: >-
+  SPF prüft nur den Envelope-From, DKIM nur die signierende Domain. Erst DMARC verknüpft
+  beides mit dem für Empfänger sichtbaren Absender. Ohne DMARC können Angreifer den
+  Header-From frei fälschen (CEO-Betrug, Rechnungsbetrug). Zudem erhält der
+  Domain-Inhaber keine Berichte über Missbrauch.
+empfehlung: >-
+  DMARC-Eintrag anlegen und schrittweise verschärfen: zuerst «v=DMARC1; p=none;
+  rua=mailto:dmarc@{domain}», Berichte zwei bis vier Wochen auswerten, alle legitimen
+  Versanddienste auf SPF/DKIM mit passender Domain umstellen, dann p=quarantine und
+  zuletzt p=reject.
+pruefen: dig TXT _dmarc.{domain} +short
+referenzen:
+  - RFC 7489 – Domain-based Message Authentication, Reporting, and Conformance (DMARC)
+  - https://www.rfc-editor.org/rfc/rfc7489

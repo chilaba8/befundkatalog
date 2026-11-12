@@ -1,0 +1,28 @@
+id: DMARC-P-NONE
+version: 1
+status: entwurf
+kategorie: E-Mail
+schweregrad: hoch
+cwe: CWE-290
+titel:
+  de: DMARC nur im Beobachtungsmodus (p=none)
+  en: DMARC in monitoring mode only (p=none)
+  es: DMARC solo en modo de observación (p=none)
+geschaeftsleitung: >-
+  Der Schutz ist eingerichtet, aber ausgeschaltet: Gefälschte E-Mails mit Ihrer
+  Absenderadresse werden nicht blockiert.
+beschreibung: >-
+  Der DMARC-Eintrag der Domain {domain} verwendet die Richtlinie «p=none». Empfänger
+  werten DMARC aus, ergreifen bei Fehlschlag aber keine Massnahme.
+auswirkung: >-
+  Gefälschte E-Mails werden wie ohne DMARC zugestellt. p=none ist nur als kurze
+  Übergangsphase gedacht, um mit den Berichten (rua) alle legitimen Versanddienste
+  zu erfassen.
+empfehlung: >-
+  Berichte (rua) auswerten; sobald alle legitimen Versanddienste SPF oder DKIM mit
+  passender Domain bestehen, auf p=quarantine und danach auf p=reject umstellen.
+  Fehlt rua, zuerst eine Berichtsadresse ergänzen.
+pruefen: dig TXT _dmarc.{domain} +short
+referenzen:
+  - RFC 7489, Abschnitt 6.3 (p=)
+  - https://www.rfc-editor.org/rfc/rfc7489#section-6.3

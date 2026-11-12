@@ -1,0 +1,27 @@
+id: SPF-ALL-OFFEN
+version: 1
+status: entwurf
+kategorie: E-Mail
+schweregrad: kritisch
+cwe: CWE-290
+titel:
+  de: SPF erlaubt allen Servern den Versand (+all / ?all)
+  en: SPF permits all servers (+all / ?all)
+  es: SPF permite el envío a todos los servidores (+all / ?all)
+geschaeftsleitung: >-
+  Ihr Eintrag erlaubt ausdrücklich JEDEM Server auf der Welt, E-Mails in Ihrem Namen
+  zu senden. Damit ist der Schutz nicht nur wirkungslos, sondern hilft Fälschern sogar.
+beschreibung: >-
+  Der SPF-Eintrag der Domain {domain} endet mit «+all» (oder «?all»). Damit besteht
+  jeder sendende Server die SPF-Prüfung («pass» bzw. «neutral»).
+auswirkung: >-
+  Gefälschte E-Mails von beliebigen Servern erhalten ein positives oder neutrales
+  SPF-Ergebnis. Bei «+all» kann DMARC über ein «pass» sogar bestanden werden, wenn
+  der Angreifer dieselbe Domain als Envelope-From verwendet.
+empfehlung: >-
+  «+all» bzw. «?all» sofort durch «-all» ersetzen (übergangsweise «~all»), nachdem
+  alle legitimen Versanddienste im Eintrag aufgeführt sind.
+pruefen: dig TXT {domain} +short | grep spf1
+referenzen:
+  - RFC 7208, Abschnitt 5.1 (all)
+  - https://www.rfc-editor.org/rfc/rfc7208#section-5.1

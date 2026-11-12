@@ -1,0 +1,31 @@
+id: SPF-FEHLT
+version: 1
+status: entwurf            # entwurf → geprueft (nach muttersprachlicher Prüfung)
+kategorie: E-Mail
+schweregrad: hoch          # kritisch | hoch | mittel | niedrig | info
+cwe: CWE-290               # Authentication Bypass by Spoofing
+titel:
+  de: Kein SPF-Eintrag vorhanden
+  en: No SPF record
+  es: No existe registro SPF
+geschaeftsleitung: >-
+  Es ist nicht festgelegt, welche Server E-Mails im Namen Ihrer Firma senden dürfen.
+  Gefälschte E-Mails sind dadurch schwerer zu erkennen, und Ihre echten E-Mails
+  landen häufiger im Spam.
+beschreibung: >-
+  Für die Domain {domain} existiert kein TXT-Eintrag mit «v=spf1». Empfangende
+  Mailserver können daher nicht prüfen, ob ein Server berechtigt ist, E-Mails mit
+  dieser Absenderdomain (Envelope-From) zu versenden.
+auswirkung: >-
+  Angreifer können E-Mails mit einer Absenderadresse der Domain versenden, ohne dass
+  SPF sie als unberechtigt kennzeichnet. Ohne SPF kann DMARC sich nur auf DKIM stützen.
+  Zudem bewerten grosse Anbieter (Gmail, Microsoft) E-Mails ohne SPF schlechter,
+  was die Zustellbarkeit verringert.
+empfehlung: >-
+  Einen SPF-Eintrag anlegen, der alle legitimen Versanddienste umfasst und mit «-all»
+  endet, z. B. «v=spf1 include:<anbieter> -all». Die genauen Werte nennt der
+  E-Mail-Anbieter. Höchstens 10 DNS-Abfragen (include, a, mx, ptr, exists, redirect).
+pruefen: dig TXT {domain} +short | grep spf1
+referenzen:
+  - RFC 7208 – Sender Policy Framework (SPF)
+  - https://www.rfc-editor.org/rfc/rfc7208

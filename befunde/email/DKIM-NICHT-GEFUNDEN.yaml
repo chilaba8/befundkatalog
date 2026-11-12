@@ -1,0 +1,30 @@
+id: DKIM-NICHT-GEFUNDEN
+version: 1
+status: entwurf
+kategorie: E-Mail
+schweregrad: mittel
+cwe: CWE-345               # Insufficient Verification of Data Authenticity
+titel:
+  de: Kein DKIM-Schlüssel unter gängigen Selektoren gefunden
+  en: No DKIM key found under common selectors
+  es: No se encontró clave DKIM en los selectores habituales
+geschaeftsleitung: >-
+  Es ist nicht sicher, ob Ihre E-Mails digital unterschrieben werden. Ohne Unterschrift
+  können Empfänger echte E-Mails schlechter von Fälschungen unterscheiden.
+beschreibung: >-
+  Unter den gängigen DKIM-Selektoren (z. B. selector1, selector2, google, default)
+  wurde für {domain} kein öffentlicher Schlüssel gefunden. Da Selektoren frei wählbar
+  sind und per DNS nicht aufgelistet werden können, ist DKIM möglicherweise trotzdem
+  eingerichtet.
+auswirkung: >-
+  Fehlt DKIM tatsächlich, kann DMARC sich nur auf SPF stützen. SPF scheitert bei
+  Weiterleitungen, wodurch legitime E-Mails abgelehnt oder als Spam markiert werden
+  können.
+empfehlung: >-
+  Kopfzeilen einer versendeten E-Mail prüfen (DKIM-Signature: d=… s=…). Fehlt die
+  Signatur: DKIM beim E-Mail-Anbieter aktivieren (Schlüssel mit mindestens 2048 Bit)
+  und darauf achten, dass d= der Absenderdomain entspricht (DMARC-Alignment).
+pruefen: dig TXT <selektor>._domainkey.{domain} +short
+referenzen:
+  - RFC 6376 – DomainKeys Identified Mail (DKIM) Signatures
+  - https://www.rfc-editor.org/rfc/rfc6376
