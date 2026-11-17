@@ -1,0 +1,28 @@
+id: MTASTS-TESTING
+version: 1
+status: entwurf
+kategorie: E-Mail
+schweregrad: niedrig
+cwe: CWE-319               # Cleartext Transmission of Sensitive Information
+titel:
+  de: "MTA-STS nur im Testmodus («mode: testing»)"
+  en: MTA-STS in testing mode only
+  es: "MTA-STS solo en modo de prueba («mode: testing»)"
+geschaeftsleitung: >-
+  Die Verschlüsselung eingehender E-Mails ist vorbereitet, wird aber noch nicht erzwungen.
+  Der letzte Schritt fehlt.
+beschreibung: >-
+  Die MTA-STS-Richtlinie von {domain} steht auf «mode: testing». Sendende Mailserver
+  melden Fehler (per TLS-RPT), stellen E-Mails aber trotzdem zu – auch unverschlüsselt
+  oder an einen nicht passenden Server.
+auswirkung: >-
+  Ein Angreifer im Netz kann die Verschlüsselung weiterhin unterdrücken (Downgrade).
+  Der Schutz von MTA-STS wirkt erst mit «mode: enforce».
+empfehlung: >-
+  TLS-RPT-Berichte einige Wochen auswerten. Wenn keine Fehler auftreten: in
+  https://mta-sts.{domain}/.well-known/mta-sts.txt auf «mode: enforce» umstellen und die
+  id im TXT-Eintrag _mta-sts.{domain} erhöhen.
+pruefen: curl -s https://mta-sts.{domain}/.well-known/mta-sts.txt
+referenzen:
+  - RFC 8461 – SMTP MTA Strict Transport Security (MTA-STS), Abschnitt 5
+  - RFC 8460 – SMTP TLS Reporting

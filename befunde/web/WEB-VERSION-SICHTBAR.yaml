@@ -1,0 +1,26 @@
+id: WEB-VERSION-SICHTBAR
+version: 1
+status: entwurf
+kategorie: Web
+schweregrad: info
+cwe: CWE-497               # Exposure of Sensitive System Information
+titel:
+  de: Webserver verrät seine Software-Version
+  en: Web server discloses its software version
+  es: El servidor web revela la versión de su software
+geschaeftsleitung: >-
+  Der Webserver verrät, welche Software in welcher Version läuft. Das erleichtert
+  Angreifern die Suche nach bekannten Lücken.
+beschreibung: >-
+  Die HTTP-Header «Server» oder «X-Powered-By» von {domain} enthalten eine
+  Versionsnummer (z. B. «Apache/2.4.41», «PHP/7.4.3»).
+auswirkung: >-
+  Die Angabe allein ist keine Lücke, erlaubt aber, veraltete Versionen mit bekannten
+  Schwachstellen ohne weiteren Aufwand zu erkennen. Bei Backports (z. B. Debian, Ubuntu)
+  kann die angezeigte Version trotz Sicherheitsupdates alt wirken.
+empfehlung: >-
+  Software aktuell halten und die Versionsangabe ausblenden, z. B. Apache
+  «ServerTokens Prod», nginx «server_tokens off», PHP «expose_php = Off».
+pruefen: curl -sI https://{domain}/ | grep -iE '^(server|x-powered-by):'
+referenzen:
+  - OWASP WSTG – Fingerprint Web Server (WSTG-INFO-02)

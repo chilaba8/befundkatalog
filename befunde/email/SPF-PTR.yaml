@@ -1,0 +1,26 @@
+id: SPF-PTR
+version: 1
+status: entwurf
+kategorie: E-Mail
+schweregrad: niedrig
+titel:
+  de: SPF verwendet den veralteten Mechanismus «ptr»
+  en: SPF uses the deprecated «ptr» mechanism
+  es: SPF usa el mecanismo obsoleto «ptr»
+geschaeftsleitung: >-
+  Der SPF-Eintrag verwendet eine veraltete Methode. Dadurch können echte E-Mails von
+  Ihnen im Spam landen oder abgewiesen werden.
+beschreibung: >-
+  Der SPF-Eintrag von {domain} enthält den Mechanismus «ptr». Er prüft den Absender über
+  die Rückwärtsauflösung seiner IP-Adresse; RFC 7208 rät von seiner Verwendung ab.
+auswirkung: >-
+  «ptr» ist langsam, verursacht viele DNS-Abfragen und hängt von Reverse-DNS-Einträgen ab,
+  die oft der Provider verwaltet. Manche Empfänger werten ihn nicht aus; das SPF-Ergebnis
+  wird unzuverlässig.
+empfehlung: >-
+  «ptr» durch die tatsächlichen Absender ersetzen: ip4:/ip6: für eigene Server, include:
+  für Dienste wie Microsoft 365 oder Newsletter-Anbieter.
+pruefen: dig TXT {domain} +short | grep spf1
+referenzen:
+  - RFC 7208 – Sender Policy Framework (SPF), Abschnitt 5.5 – ptr SHOULD NOT be used
+  - https://www.rfc-editor.org/rfc/rfc7208

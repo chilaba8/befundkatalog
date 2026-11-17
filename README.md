@@ -7,8 +7,8 @@ formuliert dieselben Befunde immer wieder neu. Öffentliche Sammlungen gibt es f
 auf Englisch. `befundkatalog` sammelt Befunde in verständlichem Deutsch: technisch für
 den Informatiker und in einem Satz für die Geschäftsleitung.
 
-> Status: 47 Befunde zu E-Mail, DNS, Web und offenen Diensten, sprachlich und fachlich
-> geprüft (`status: geprueft`). Der Katalog wächst – Korrekturen und neue Befunde sind willkommen.
+> Status: 59 Befunde zu E-Mail, DNS, Web und offenen Diensten; 45 davon sprachlich und fachlich
+> geprüft (`status: geprueft`), 14 im Entwurf. Der Katalog wächst – Korrekturen und neue Befunde sind willkommen.
 
 ## Aufbau eines Befunds
 
@@ -30,7 +30,7 @@ Export mit `--sz` ß und „…“.
 
 ## Befunde
 
-47 Befunde – E-Mail 25, DNS 8, Web 8, Netzwerk 6 – sortiert nach Kategorie und Schweregrad.
+59 Befunde – E-Mail 31, DNS 9, Web 12, Netzwerk 7 – sortiert nach Kategorie und Schweregrad.
 
 | Kategorie | ID | Titel | Schweregrad |
 |---|---|---|---|
@@ -55,10 +55,16 @@ Export mit `--sz` ß und „…“.
 | E-Mail | MTASTS-MX-PASST-NICHT | MTA-STS-Richtlinie passt nicht zu den Mailservern | mittel |
 | E-Mail | SPF-FEHLER | SPF-Eintrag fehlerhaft | mittel |
 | E-Mail | SPF-OHNE-ALL | SPF-Eintrag ohne Abschluss («all» fehlt) | mittel |
+| E-Mail | CLOUD-M365-NICHT-IM-SPF | Microsoft 365 eingerichtet, aber nicht im SPF | niedrig |
 | E-Mail | DMARC-KEIN-RUA | Keine DMARC-Berichte (rua) konfiguriert | niedrig |
 | E-Mail | MTASTS-FEHLT | Keine MTA-STS-Richtlinie für eingehende E-Mails | niedrig |
+| E-Mail | MTASTS-NONE | MTA-STS ausgeschaltet («mode: none») | niedrig |
 | E-Mail | MTASTS-RICHTLINIE-FEHLT | MTA-STS angekündigt, Richtlinie nicht abrufbar | niedrig |
+| E-Mail | MTASTS-TESTING | MTA-STS nur im Testmodus («mode: testing») | niedrig |
+| E-Mail | SPF-PTR | SPF verwendet den veralteten Mechanismus «ptr» | niedrig |
+| E-Mail | SPF-SOFTFAIL | SPF nur «weich» (~all) | niedrig |
 | E-Mail | AEHNLICH-OHNE-MAIL | Ähnliche Domain registriert, derzeit ohne E-Mail | info |
+| E-Mail | TLSRPT-FEHLT | Keine TLS-RPT-Berichte konfiguriert | info |
 | DNS | DNSSEC-KAPUTT | DNSSEC fehlerhaft (DS ohne DNSKEY) | hoch |
 | DNS | NS-KEINE | Keine Nameserver gefunden | hoch |
 | DNS | SUB-UEBERNEHMBAR | Subdomain zeigt auf gekündigten Dienst (Subdomain-Takeover möglich) | hoch |
@@ -66,20 +72,26 @@ Export mit `--sz` ß und „…“.
 | DNS | SUB-DIENST-FREI | Subdomain zeigt Fehlerseite eines Cloud-Dienstes (möglicherweise übernehmbar) | mittel |
 | DNS | CAA-FEHLT | Kein CAA-Eintrag vorhanden | niedrig |
 | DNS | DNSSEC-AUS | DNSSEC nicht aktiviert | niedrig |
+| DNS | DNSSEC-OHNE-DS | DNSSEC halb eingerichtet (DNSKEY ohne DS) | niedrig |
 | DNS | SUB-VERWAIST | Subdomain zeigt auf ein nicht mehr existierendes Ziel | niedrig |
 | Web | WEB-ZERT-ABGELAUFEN | TLS-Zertifikat abgelaufen | hoch |
 | Web | WEB-ZERT-UNGUELTIG | TLS-Zertifikat ungültig | hoch |
 | Web | WEB-KEINE-HTTPS-WEITERLEITUNG | Keine Weiterleitung von HTTP auf HTTPS | mittel |
 | Web | WEB-NICHT-ERREICHBAR | Webseite per HTTPS nicht erreichbar | mittel |
 | Web | WEB-TLS-ALT | Veraltete TLS-Versionen 1.0/1.1 aktiviert | mittel |
+| Web | WEB-COOKIES-UNSICHER | Cookies ohne empfohlene Schutzattribute | niedrig |
+| Web | WEB-HEADER-FEHLEN | Empfohlene Sicherheits-Header fehlen | niedrig |
 | Web | WEB-HSTS-FEHLT | HTTP Strict Transport Security (HSTS) fehlt oder ist zu kurz | niedrig |
 | Web | WEB-ZERT-LAEUFT-AB | TLS-Zertifikat läuft bald ab | niedrig |
+| Web | WEB-CMS-VERSION | Webseite verrät CMS und Version | info |
 | Web | WEB-SECURITYTXT-FEHLT | Keine security.txt veröffentlicht | info |
+| Web | WEB-VERSION-SICHTBAR | Webserver verrät seine Software-Version | info |
 | Netzwerk | SHODAN-DATENBANK | Datenbank oder Server-Schnittstelle aus dem Internet erreichbar | kritisch |
 | Netzwerk | SHODAN-FERNZUGRIFF | Fernzugriff direkt aus dem Internet erreichbar (z. B. RDP) | kritisch |
 | Netzwerk | SHODAN-KEV-RANSOMWARE | Sicherheitslücke, die von Ransomware-Gruppen ausgenutzt wird (CISA KEV) | kritisch |
 | Netzwerk | SHODAN-STEUERUNG | Industrie- oder Gebäudesteuerung aus dem Internet erreichbar | kritisch |
 | Netzwerk | SHODAN-KEV | Aktiv ausgenutzte Sicherheitslücke (CISA KEV) | hoch |
+| Netzwerk | SHODAN-CVE | Bekannte Sicherheitslücke laut Versionsangabe | mittel |
 | Netzwerk | SHODAN-UNSICHER | Unverschlüsselte oder heikle Verwaltungsdienste aus dem Internet erreichbar | mittel |
 
 Die Befunde der Kategorie **Netzwerk** beruhen auf öffentlichen Daten (Shodan InternetDB, CISA KEV).

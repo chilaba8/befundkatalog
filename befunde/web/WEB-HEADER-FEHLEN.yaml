@@ -1,0 +1,29 @@
+id: WEB-HEADER-FEHLEN
+version: 1
+status: entwurf
+kategorie: Web
+schweregrad: niedrig
+cwe: CWE-693               # Protection Mechanism Failure
+titel:
+  de: Empfohlene Sicherheits-Header fehlen
+  en: Recommended security headers missing
+  es: Faltan cabeceras de seguridad recomendadas
+geschaeftsleitung: >-
+  Die Webseite nutzt nicht alle Schutzfunktionen, die Browser anbieten. Besucher sind
+  dadurch etwas schlechter vor eingebetteten Fälschungen geschützt.
+beschreibung: >-
+  Die Startseite von {domain} setzt nicht alle empfohlenen Header: Content-Security-Policy,
+  X-Content-Type-Options, Referrer-Policy sowie X-Frame-Options oder CSP frame-ancestors.
+auswirkung: >-
+  Ohne Schutz vor Einbettung kann die Seite in fremde Seiten eingebettet werden
+  (Clickjacking). Ohne CSP wirken eingeschleuste Skripte (XSS) ungehindert; ohne
+  Referrer-Policy können Adressen mit Parametern an Dritte gelangen.
+empfehlung: >-
+  Fehlende Header beim Webhoster, im Webserver oder im CMS ergänzen, z. B.
+  «X-Content-Type-Options: nosniff», «Referrer-Policy: strict-origin-when-cross-origin»,
+  «Content-Security-Policy: frame-ancestors 'self'». Eine vollständige CSP schrittweise
+  einführen (zuerst Content-Security-Policy-Report-Only).
+pruefen: curl -sI https://{domain}/
+referenzen:
+  - OWASP Secure Headers Project
+  - https://owasp.org/www-project-secure-headers/

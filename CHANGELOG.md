@@ -2,8 +2,10 @@
 
 ## Unveröffentlicht
 
-- 2 neue Befunde (Entwurf) – jetzt 47: CAA-FEHLT (DNS) und AEHNLICH-OHNE-MAIL (E-Mail),
-  beide von pruefstand gemeldet, bisher ohne Text im Katalog.
+- 14 neue Befunde (Entwurf) – jetzt 59, für alle Hinweise der Domain-Prüfung von pruefstand:
+  CAA-FEHLT, AEHNLICH-OHNE-MAIL, SPF-SOFTFAIL, SPF-PTR, TLSRPT-FEHLT, MTASTS-TESTING,
+  MTASTS-NONE, CLOUD-M365-NICHT-IM-SPF, DNSSEC-OHNE-DS, WEB-HEADER-FEHLEN,
+  WEB-COOKIES-UNSICHER, WEB-CMS-VERSION, WEB-VERSION-SICHTBAR, SHODAN-CVE.
 
 ## 0.2.0 – 2026-11-17
 

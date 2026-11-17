@@ -1,0 +1,29 @@
+id: WEB-COOKIES-UNSICHER
+version: 1
+status: entwurf
+kategorie: Web
+schweregrad: niedrig
+cwe: CWE-614               # Sensitive Cookie in HTTPS Session Without 'Secure' Attribute
+titel:
+  de: Cookies ohne empfohlene Schutzattribute
+  en: Cookies without recommended security attributes
+  es: Cookies sin los atributos de seguridad recomendados
+geschaeftsleitung: >-
+  Die Webseite setzt Cookies ohne alle empfohlenen Schutzeinstellungen. Wichtig ist das
+  vor allem bei Anmeldungen (Kundenportal, Shop).
+beschreibung: >-
+  Die Startseite von {domain} setzt Cookies ohne eines oder mehrere der Attribute
+  Secure, HttpOnly und SameSite.
+auswirkung: >-
+  Ohne Secure kann ein Cookie unverschlüsselt übertragen werden, ohne HttpOnly kann ein
+  eingeschleustes Skript es auslesen, ohne SameSite wird es bei Anfragen von fremden
+  Seiten mitgeschickt (CSRF). Bei Anmelde-Cookies droht die Übernahme der Sitzung;
+  bei reinen Einstellungs- oder Statistik-Cookies ist das Risiko gering.
+empfehlung: >-
+  Cookies im CMS oder Webserver mit «Secure; HttpOnly; SameSite=Lax» setzen (HttpOnly
+  nur, wenn das Cookie nicht per JavaScript gelesen werden muss). Anmelde-Cookies
+  zuerst.
+pruefen: curl -sI https://{domain}/ | grep -i set-cookie
+referenzen:
+  - OWASP – Session Management Cheat Sheet (Cookies)
+  - RFC 6265 – HTTP State Management Mechanism

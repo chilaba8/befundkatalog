@@ -1,0 +1,26 @@
+id: WEB-CMS-VERSION
+version: 1
+status: entwurf
+kategorie: Web
+schweregrad: info
+cwe: CWE-497               # Exposure of Sensitive System Information
+titel:
+  de: Webseite verrät CMS und Version
+  en: Website discloses CMS and version
+  es: El sitio revela el CMS y su versión
+geschaeftsleitung: >-
+  Die Webseite verrät, mit welchem System und welcher Version sie gebaut ist. Das
+  erleichtert Angreifern die Suche nach bekannten Lücken.
+beschreibung: >-
+  Der Quelltext der Startseite von {domain} enthält eine Generator-Angabe mit
+  Versionsnummer (z. B. <meta name="generator" content="WordPress 6.4.2">).
+auswirkung: >-
+  Die Angabe allein ist keine Lücke. Ist die Version veraltet, finden automatisierte
+  Scanner die Seite sofort; veraltete CMS und Plugins (v. a. WordPress) sind ein
+  häufiger Einstieg für Angreifer.
+empfehlung: >-
+  CMS, Themes und Plugins aktuell halten – das ist der eigentliche Schutz. Die
+  Versionsangabe zusätzlich ausblenden (Einstellung oder Sicherheits-Plugin des CMS).
+pruefen: curl -s https://{domain}/ | grep -i 'name="generator"'
+referenzen:
+  - OWASP WSTG – Fingerprint Web Application Framework (WSTG-INFO-08)

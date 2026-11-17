@@ -1,0 +1,27 @@
+id: MTASTS-NONE
+version: 1
+status: entwurf
+kategorie: E-Mail
+schweregrad: niedrig
+cwe: CWE-319               # Cleartext Transmission of Sensitive Information
+titel:
+  de: "MTA-STS ausgeschaltet («mode: none»)"
+  en: "MTA-STS disabled (mode: none)"
+  es: "MTA-STS desactivado («mode: none»)"
+geschaeftsleitung: >-
+  Die Verschlüsselung eingehender E-Mails ist eingerichtet, aber ausgeschaltet. Sie wirkt
+  wie nicht vorhanden.
+beschreibung: >-
+  Die MTA-STS-Richtlinie von {domain} steht auf «mode: none». Dieser Modus dient dazu,
+  MTA-STS zurückzuziehen; sendende Mailserver wenden keine Richtlinie an.
+auswirkung: >-
+  Wie ohne MTA-STS: STARTTLS wird nur opportunistisch genutzt, ein Angreifer im Netz kann
+  die Verschlüsselung unterdrücken und E-Mails im Klartext mitlesen.
+empfehlung: >-
+  Klären, ob MTA-STS bewusst abgeschaltet wurde. Wenn nicht: Ursache beheben (meist
+  passen die mx-Zeilen nicht zu den Mailservern), dann über «mode: testing» auf
+  «mode: enforce» umstellen und die id im TXT-Eintrag erhöhen.
+pruefen: curl -s https://mta-sts.{domain}/.well-known/mta-sts.txt
+referenzen:
+  - RFC 8461 – SMTP MTA Strict Transport Security (MTA-STS), Abschnitt 5 und 8.3
+  - https://www.rfc-editor.org/rfc/rfc8461

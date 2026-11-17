@@ -1,0 +1,27 @@
+id: DNSSEC-OHNE-DS
+version: 1
+status: entwurf
+kategorie: DNS
+schweregrad: niedrig
+cwe: CWE-345
+titel:
+  de: DNSSEC halb eingerichtet (DNSKEY ohne DS)
+  en: DNSSEC partially configured (DNSKEY without DS)
+  es: DNSSEC a medio configurar (DNSKEY sin DS)
+geschaeftsleitung: >-
+  Ihre DNS-Daten werden unterschrieben, die Unterschrift ist aber nicht beim Register
+  hinterlegt. Der Schutz wirkt deshalb noch nicht.
+beschreibung: >-
+  Die Zone {domain} liefert DNSKEY-Einträge, bei der Registry (z. B. SWITCH für .ch) ist
+  jedoch kein DS-Eintrag hinterlegt. Die Vertrauenskette fehlt; validierende Resolver
+  behandeln die Zone als unsigniert.
+auswirkung: >-
+  Wie ohne DNSSEC: DNS-Antworten können unterwegs gefälscht werden. Kein Ausfallrisiko,
+  da ohne DS nicht validiert wird.
+empfehlung: >-
+  Beim Domain-Anbieter DNSSEC aktivieren bzw. den DS-Eintrag an die Registry übermitteln
+  (bei .ch/.li oft automatisch über CDS). Danach mit einem validierenden Resolver prüfen.
+pruefen: dig DS {domain} +short && dig DNSKEY {domain} +short
+referenzen:
+  - RFC 4035 – Protocol Modifications for the DNS Security Extensions
+  - RFC 8078 – Managing DS Records from the Parent via CDS/CDNSKEY

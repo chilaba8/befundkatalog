@@ -1,0 +1,28 @@
+id: SPF-SOFTFAIL
+version: 1
+status: entwurf
+kategorie: E-Mail
+schweregrad: niedrig
+cwe: CWE-290               # Authentication Bypass by Spoofing
+titel:
+  de: SPF nur «weich» (~all)
+  en: SPF softfail only (~all)
+  es: SPF solo en modo «suave» (~all)
+geschaeftsleitung: >-
+  Fremde Server, die in Ihrem Namen E-Mails senden, werden nur markiert, nicht abgelehnt.
+  Mit einem strengen DMARC ist das ausreichend, ohne DMARC eine Lücke.
+beschreibung: >-
+  Der SPF-Eintrag von {domain} endet auf «~all» (Softfail). Empfangende Server sollen
+  E-Mails von nicht aufgeführten Servern annehmen und nur als verdächtig kennzeichnen.
+auswirkung: >-
+  Ohne DMARC mit p=quarantine oder p=reject entscheidet jeder Empfänger selbst; gefälschte
+  E-Mails können im Posteingang landen. Mit strengem DMARC ist das Risiko gering, da DMARC
+  das Ergebnis durchsetzt.
+empfehlung: >-
+  Prüfen, ob alle echten Versanddienste (Mailserver, Newsletter, CRM, Buchhaltung) im SPF
+  stehen, dann «~all» durch «-all» ersetzen. Wichtiger als -all ist ein DMARC mit
+  p=quarantine oder p=reject.
+pruefen: dig TXT {domain} +short | grep spf1
+referenzen:
+  - RFC 7208 – Sender Policy Framework (SPF), Abschnitt 8.5 (SoftFail)
+  - https://www.rfc-editor.org/rfc/rfc7208

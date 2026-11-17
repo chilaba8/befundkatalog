@@ -1,0 +1,28 @@
+id: SHODAN-CVE
+version: 1
+status: entwurf
+kategorie: Netzwerk
+schweregrad: mittel
+cwe: CWE-1395              # Dependency on Vulnerable Third-Party Component
+titel:
+  de: Bekannte Sicherheitslücke laut Versionsangabe
+  en: Known vulnerability based on reported version
+  es: Vulnerabilidad conocida según la versión detectada
+geschaeftsleitung: >-
+  Auf einem Ihrer Server läuft laut öffentlichen Daten Software mit bekannten Lücken.
+  Ob sie wirklich betroffen ist, muss Ihr Informatiker prüfen.
+beschreibung: >-
+  Für eine IP-Adresse von {domain} meldet Shodan eine Softwareversion mit bekannten CVEs,
+  die nicht im CISA-Katalog «Known Exploited Vulnerabilities» stehen. Die Zuordnung beruht
+  nur auf dem Banner und ist nicht bestätigt.
+auswirkung: >-
+  Für diese Lücken sind derzeit keine Angriffe in freier Wildbahn bekannt; das kann sich
+  ändern. Bei Backports oder Fehlerkennung ist die Meldung ein Fehlalarm.
+empfehlung: >-
+  Mit dem Hersteller oder Informatiker prüfen, ob die eingesetzte Version betroffen ist,
+  und Updates einspielen. Dienste, die nicht aus dem Internet erreichbar sein müssen,
+  abschalten oder hinter ein VPN legen.
+pruefen: "https://internetdb.shodan.io/<ip>"
+referenzen:
+  - NIST National Vulnerability Database
+  - "https://nvd.nist.gov"

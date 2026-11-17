@@ -1,0 +1,27 @@
+id: CLOUD-M365-NICHT-IM-SPF
+version: 1
+status: entwurf
+kategorie: E-Mail
+schweregrad: niedrig
+titel:
+  de: Microsoft 365 eingerichtet, aber nicht im SPF
+  en: Microsoft 365 in use but not authorised in SPF
+  es: Microsoft 365 configurado, pero no incluido en SPF
+geschaeftsleitung: >-
+  Ihre Firma nutzt offenbar Microsoft 365, doch E-Mails von dort sind nicht als echt
+  eingetragen. Werden sie darüber verschickt, landen sie im Spam oder werden abgewiesen.
+beschreibung: >-
+  Für {domain} gibt es Hinweise auf Microsoft 365 (z. B. autodiscover, Entra ID, Intune),
+  die Mailserver liegen aber nicht bei Exchange Online und der SPF-Eintrag enthält kein
+  «include:spf.protection.outlook.com».
+auswirkung: >-
+  Nur relevant, wenn E-Mails über Microsoft 365 (Outlook, Teams-Benachrichtigungen,
+  Formulare) versendet werden: Sie bestehen SPF nicht und scheitern bei strengem DMARC.
+  Kein Sicherheitsrisiko, aber ein Zustellproblem.
+empfehlung: >-
+  Mit dem Informatiker klären, ob über Microsoft 365 versendet wird. Wenn ja:
+  «include:spf.protection.outlook.com» in den SPF aufnehmen und DKIM in Microsoft 365
+  einschalten. Wenn nein: kein Handlungsbedarf.
+pruefen: dig TXT {domain} +short | grep spf1
+referenzen:
+  - Microsoft Learn – Set up SPF to identify valid email sources for your Microsoft 365 domain

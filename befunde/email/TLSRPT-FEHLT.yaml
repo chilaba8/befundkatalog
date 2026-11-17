@@ -1,0 +1,27 @@
+id: TLSRPT-FEHLT
+version: 1
+status: entwurf
+kategorie: E-Mail
+schweregrad: info
+titel:
+  de: Keine TLS-RPT-Berichte konfiguriert
+  en: No SMTP TLS reporting (TLS-RPT) configured
+  es: Sin informes TLS-RPT configurados
+geschaeftsleitung: >-
+  Sie erfahren nicht, wenn E-Mails an Ihre Firma nicht verschlüsselt zugestellt werden
+  können.
+beschreibung: >-
+  Für {domain} existiert kein TXT-Eintrag _smtp._tls. Sendende Mailserver können daher
+  keine Berichte über gescheiterte verschlüsselte Zustellungen (STARTTLS, MTA-STS, DANE)
+  senden.
+auswirkung: >-
+  Fehler bei der Verschlüsselung (abgelaufenes Zertifikat am Mailserver, falsche
+  MTA-STS-Richtlinie, Downgrade-Versuche) bleiben unbemerkt. Ohne TLS-RPT lässt sich
+  MTA-STS nicht sicher von «testing» auf «enforce» umstellen.
+empfehlung: >-
+  TXT-Eintrag _smtp._tls.{domain} mit «v=TLSRPTv1; rua=mailto:tlsrpt@{domain}» anlegen
+  (eigene Adresse oder Auswertungsdienst).
+pruefen: dig TXT _smtp._tls.{domain} +short
+referenzen:
+  - RFC 8460 – SMTP TLS Reporting
+  - https://www.rfc-editor.org/rfc/rfc8460
