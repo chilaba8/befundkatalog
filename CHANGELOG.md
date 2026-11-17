@@ -1,6 +1,6 @@
 # Änderungen
 
-## Unveröffentlicht
+## 0.3.1 – 2026-11-17
 
 - Prüfbefehle (`pruefen`) werden automatisch geprüft, weil Leser sie ins Terminal kopieren:
   nur dig, curl, openssl, nmap, whois, grep, head, echo; nur `|` und `&&`; curl ohne
