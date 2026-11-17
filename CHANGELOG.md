@@ -1,5 +1,11 @@
 # Änderungen
 
+## Unveröffentlicht
+
+- Prüfbefehle (`pruefen`) werden automatisch geprüft, weil Leser sie ins Terminal kopieren:
+  nur dig, curl, openssl, nmap, whois, grep, head, echo; nur `|` und `&&`; curl ohne
+  Ausgabedateien oder Uploads, nmap ohne Skripte und nur mit Hinweis auf das Einverständnis.
+
 ## 0.3.0 – 2026-11-17
 
 - 14 neue Befunde – jetzt 59, für alle Hinweise der Domain-Prüfung von pruefstand:

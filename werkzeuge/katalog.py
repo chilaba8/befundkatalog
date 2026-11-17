@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import shlex
 import sys
 from pathlib import Path
 
@@ -21,6 +22,61 @@ PFLICHT = ["id", "version", "status", "kategorie", "schweregrad", "titel", "gesc
 SCHWEREGRADE = ["kritisch", "hoch", "mittel", "niedrig", "info"]
 STATUS = ["entwurf", "geprueft"]
 GETRENNT = re.compile(r"\w- (?!(?:und|oder|bzw\.|sowie|als) )\w+")
+
+# «pruefen» wird von Lesern ins Terminal kopiert. Ein Beitrag darf dort nichts Gefährliches
+# unterbringen: nur lesende Werkzeuge, nur «|» und «&&», keine Dateien schreiben.
+BEFEHLE = {"dig", "curl", "openssl", "nmap", "whois", "grep", "head", "echo"}
+CURL_OPTIONEN = {"-s", "-I", "-sI", "-L", "-sL", "-sIL"}
+OPENSSL_UNTERBEFEHLE = {"s_client", "x509"}
+PLATZHALTER = re.compile(r"<[a-z][a-z-]*>")
+
+
+def pruefe_befehl(befehl: str) -> str | None:
+    """None, wenn der Prüfbefehl harmlos ist; sonst der Grund."""
+    if re.fullmatch(r"https://[^\s`$;|&<>'\"]+", PLATZHALTER.sub("x", befehl)):
+        return None                                   # nur ein Link zum Nachschauen
+    if any(z in befehl for z in ("`", "$(", "${", "\n")):
+        return "Befehlsersetzung oder Zeilenumbruch"
+    if "nmap" in befehl and "Einverständnis" not in befehl:
+        return "nmap nur mit Hinweis «# nur mit Einverständnis des Inhabers»"
+    try:
+        lex = shlex.shlex(PLATZHALTER.sub("PLATZHALTER", befehl), posix=True, punctuation_chars=True)
+        token = list(lex)                             # «# …» am Ende wird als Kommentar entfernt
+    except ValueError as e:
+        return f"nicht lesbar ({e})"
+    teile, aktuell, i = [], [], 0
+    while i < len(token):
+        t = token[i]
+        if t in ("|", "&&"):
+            teile.append(aktuell)
+            aktuell = []
+        elif t == "<" and token[i + 1:i + 2] == ["/dev/null"]:
+            i += 1
+        elif t == ">" and aktuell[-1:] == ["2"] and token[i + 1:i + 2] == ["/dev/null"]:
+            aktuell.pop()
+            i += 1
+        elif t and set(t) <= set("();<>|&"):
+            return f"Operator «{t}» nicht erlaubt (nur | und &&)"
+        else:
+            aktuell.append(t)
+        i += 1
+    teile.append(aktuell)
+    for teil in teile:
+        if not teil:
+            return "leerer Befehl"
+        prog, args = teil[0], teil[1:]
+        if prog not in BEFEHLE:
+            return f"Programm «{prog}» nicht erlaubt ({', '.join(sorted(BEFEHLE))})"
+        if prog == "curl" and (bad := [a for a in args if a.startswith("-") and a not in CURL_OPTIONEN]):
+            return f"curl-Option {bad[0]} nicht erlaubt (nur {', '.join(sorted(CURL_OPTIONEN))})"
+        if prog == "openssl" and (not args or args[0] not in OPENSSL_UNTERBEFEHLE
+                                  or any(a in ("-out", "-writerand", "-keylogfile", "-sess_out") for a in args)):
+            return "openssl nur s_client/x509, ohne Dateien zu schreiben"
+        if prog == "nmap" and any(a.startswith(("--script", "-sC", "-o", "-iL", "--resume")) for a in args):
+            return "nmap ohne Skripte und ohne Ausgabedateien"
+        if prog == "echo" and args:
+            return "echo nur ohne Argumente (für «echo | openssl …»)"
+    return None
 SPRACHEN_TITEL = ["de", "en", "es"]
 ID_MUSTER = re.compile(r"^[A-Z0-9]+(-[A-Z0-9]+)+$")
 # Für de-DE: nur bekannte Wörter (wie in pruefstand/sprache.py)
@@ -61,6 +117,8 @@ def pruefe_befund(pfad: Path, b: dict) -> list[str]:
         m = GETRENNT.search(str(b.get(feld) or ""))
         if m:
             fehler.append(f"{pfad.name}: {feld}: getrenntes Wort «{m.group(0)}» (Zeilenumbruch nach Bindestrich)")
+    if b.get("pruefen") and (grund := pruefe_befehl(str(b["pruefen"]))):
+        fehler.append(f"{pfad.name}: pruefen: {grund}")
     if "ß" in yaml.safe_dump(b, allow_unicode=True):
         fehler.append(f"{pfad.name}: Texte in Schweizer Schreibweise (ss statt ß); de-DE entsteht beim Export")
     return fehler

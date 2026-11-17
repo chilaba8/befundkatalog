@@ -22,7 +22,7 @@ Eine YAML-Datei pro Befund, z. B. [`befunde/email/DMARC-FEHLT.yaml`](befunde/ema
 | `titel` | Deutsch, Englisch, Spanisch |
 | `geschaeftsleitung` | ein bis zwei Sätze ohne Fachbegriffe |
 | `beschreibung`, `auswirkung`, `empfehlung` | technischer Text; `{domain}` wird beim Export ersetzt |
-| `pruefen` | Befehl, mit dem sich die Behebung überprüfen lässt |
+| `pruefen` | Befehl, mit dem sich die Behebung überprüfen lässt – nur lesende Werkzeuge (dig, curl, openssl …), wird automatisch geprüft |
 | `referenzen` | RFC, Normen, offizielle Dokumentation |
 
 Die Texte sind in **Schweizer Schreibweise** (ss, «…») verfasst. Für Deutschland erzeugt der
