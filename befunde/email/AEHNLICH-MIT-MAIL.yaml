@@ -1,6 +1,6 @@
 id: AEHNLICH-MIT-MAIL
 version: 1
-status: entwurf
+status: geprueft
 kategorie: E-Mail
 schweregrad: mittel
 cwe: CWE-451               # User Interface (UI) Misrepresentation of Critical Information
@@ -9,7 +9,7 @@ titel:
   en: Look-alike domain with mail exchanger registered
   es: Dominio parecido registrado con correo
 geschaeftsleitung: >-
-  Jemand besitzt eine Domain, die fast wie Ihre aussieht und E-Mails senden kann.
+  Jemand besitzt eine Domain, die fast wie Ihre aussieht und für E-Mails eingerichtet ist.
   Damit lassen sich gefälschte Rechnungen verschicken, die technisch «echt» wirken.
 beschreibung: >-
   Für die Domain {domain} wurden registrierte Tippfehler-Varianten (z. B. vertauschte

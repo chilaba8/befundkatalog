@@ -7,8 +7,8 @@ formuliert dieselben Befunde immer wieder neu. Öffentliche Sammlungen gibt es f
 auf Englisch. `befundkatalog` sammelt Befunde in verständlichem Deutsch: technisch für
 den Informatiker und in einem Satz für die Geschäftsleitung.
 
-> Status: Anfang. Die Texte sind **Entwürfe** und brauchen eine Prüfung durch
-> Muttersprachler (`status: entwurf`). Korrekturen sind sehr willkommen.
+> Status: 13 Befunde zu E-Mail, DNS und Web, sprachlich und fachlich geprüft
+> (`status: geprueft`). Der Katalog wächst – Korrekturen und neue Befunde sind willkommen.
 
 ## Aufbau eines Befunds
 
@@ -35,7 +35,7 @@ Texte sind in **Schweizer Schreibweise** (ss, «…»). Für Deutschland erzeugt
 | DNS | DNSSEC-AUS | DNSSEC nicht aktiviert | niedrig |
 | DNS | SUB-UEBERNEHMBAR | Subdomain zeigt auf gekündigten Dienst (Subdomain-Takeover möglich) | hoch |
 | E-Mail | AEHNLICH-MIT-MAIL | Ähnliche Domain mit E-Mail-Empfang registriert | mittel |
-| E-Mail | DKIM-NICHT-GEFUNDEN | Kein DKIM-Schlüssel unter gängigen Selektoren gefunden | mittel |
+| E-Mail | DKIM-NICHT-GEFUNDEN | Kein DKIM-Schlüssel unter den üblichen Selektoren gefunden | mittel |
 | E-Mail | DMARC-FEHLT | Kein DMARC-Eintrag vorhanden | hoch |
 | E-Mail | DMARC-KEIN-RUA | Keine DMARC-Berichte (rua) konfiguriert | niedrig |
 | E-Mail | DMARC-P-NONE | DMARC nur im Beobachtungsmodus (p=none) | hoch |
@@ -61,8 +61,17 @@ pytest
 ## Mitmachen
 
 Neue Befunde und Korrekturen gerne als Pull Request. Bitte nur eigene Texte oder Texte
-mit kompatibler Lizenz.
+mit kompatibler Lizenz. Vor dem Pull Request `python werkzeuge/katalog.py pruefen` und
+`pytest` ausführen – der Prüfer findet u. a. fehlende Felder, falsche IDs und durch
+Zeilenumbrüche getrennte Wörter.
+
+## Über
+
+Entwickelt von Juan Amorós García – [Limmattal IT & Security](https://limmattal-it.ch).
+Fragen und Ideen: als Issue oder an kontakt@limmattal-it.ch.
+Die Befunde werden in [pruefstand](https://github.com/chilaba8/pruefstand) verwendet,
+einem passiven E-Mail- und DNS-Sicherheits-Check für KMU.
 
 ## Lizenz
 
-Texte: CC BY 4.0 · Code: MIT – siehe [LICENSE](LICENSE).
+Texte: CC BY 4.0 · Code: MIT – siehe [LICENSE](LICENSE). Ohne Gewähr.

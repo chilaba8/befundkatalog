@@ -1,6 +1,6 @@
 id: DMARC-FEHLT
 version: 1
-status: entwurf
+status: geprueft
 kategorie: E-Mail
 schweregrad: hoch
 cwe: CWE-290
@@ -9,12 +9,12 @@ titel:
   en: No DMARC record
   es: No existe registro DMARC
 geschaeftsleitung: >-
-  Jemand kann E-Mails mit Ihrer Absenderadresse verschicken – zum Beispiel gefälschte
-  Rechnungen mit einer anderen Bankverbindung –, und viele davon kommen im Posteingang an.
+  Betrüger können E-Mails mit Ihrer Absenderadresse verschicken – zum Beispiel gefälschte
+  Rechnungen mit einer anderen Bankverbindung –, und viele davon landen im Posteingang.
 beschreibung: >-
   Unter _dmarc.{domain} existiert kein TXT-Eintrag mit «v=DMARC1». Empfänger erhalten
   keine Anweisung, wie mit E-Mails umzugehen ist, deren sichtbarer Absender (Header-From)
-  die Domain verwendet, aber SPF und DKIM nicht besteht.
+  die Domain verwendet, aber weder SPF noch DKIM mit passender Domain besteht.
 auswirkung: >-
   SPF prüft nur den Envelope-From, DKIM nur die signierende Domain. Erst DMARC verknüpft
   beides mit dem für Empfänger sichtbaren Absender. Ohne DMARC können Angreifer den

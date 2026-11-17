@@ -1,6 +1,6 @@
 id: WEB-HSTS-FEHLT
 version: 1
-status: entwurf
+status: geprueft
 kategorie: Web
 schweregrad: niedrig
 cwe: CWE-319

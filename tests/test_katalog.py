@@ -38,3 +38,10 @@ def test_sysreptor_format():
     assert tr["language"] == "de-DE" and tr["is_main"] is True and tr["status"] in ("in-progress", "finished")
     assert {"title", "summary", "description", "impact", "recommendation", "references"} <= set(tr["data"])
     assert all("{domain}" not in str(x["translations"][0]["data"]) for x in vorlagen)
+
+
+def test_getrenntes_wort_wird_erkannt(tmp_path):
+    b = {"beschreibung": "gefälschte DNS- Antworten"}
+    assert any("getrenntes Wort" in f for f in katalog.pruefe_befund(tmp_path / "X.yaml", b))
+    b = {"beschreibung": "Rechnungs- und CEO-Betrug"}
+    assert not any("getrenntes Wort" in f for f in katalog.pruefe_befund(tmp_path / "X.yaml", b))

@@ -1,6 +1,6 @@
 id: DMARC-P-NONE
 version: 1
-status: entwurf
+status: geprueft
 kategorie: E-Mail
 schweregrad: hoch
 cwe: CWE-290

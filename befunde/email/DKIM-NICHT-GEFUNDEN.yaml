@@ -1,18 +1,18 @@
 id: DKIM-NICHT-GEFUNDEN
 version: 1
-status: entwurf
+status: geprueft
 kategorie: E-Mail
 schweregrad: mittel
 cwe: CWE-345               # Insufficient Verification of Data Authenticity
 titel:
-  de: Kein DKIM-Schlüssel unter gängigen Selektoren gefunden
+  de: Kein DKIM-Schlüssel unter den üblichen Selektoren gefunden
   en: No DKIM key found under common selectors
   es: No se encontró clave DKIM en los selectores habituales
 geschaeftsleitung: >-
-  Es ist nicht sicher, ob Ihre E-Mails digital unterschrieben werden. Ohne Unterschrift
+  Es ist unklar, ob Ihre E-Mails digital unterschrieben werden. Ohne Unterschrift
   können Empfänger echte E-Mails schlechter von Fälschungen unterscheiden.
 beschreibung: >-
-  Unter den gängigen DKIM-Selektoren (z. B. selector1, selector2, google, default)
+  Unter den üblichen DKIM-Selektoren (z. B. selector1, selector2, google, default)
   wurde für {domain} kein öffentlicher Schlüssel gefunden. Da Selektoren frei wählbar
   sind und per DNS nicht aufgelistet werden können, ist DKIM möglicherweise trotzdem
   eingerichtet.

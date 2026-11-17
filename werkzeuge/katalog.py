@@ -20,11 +20,13 @@ PFLICHT = ["id", "version", "status", "kategorie", "schweregrad", "titel", "gesc
            "beschreibung", "auswirkung", "empfehlung", "pruefen", "referenzen"]
 SCHWEREGRADE = ["kritisch", "hoch", "mittel", "niedrig", "info"]
 STATUS = ["entwurf", "geprueft"]
+GETRENNT = re.compile(r"\w- (?!(?:und|oder|bzw\.|sowie|als) )\w+")
 SPRACHEN_TITEL = ["de", "en", "es"]
 ID_MUSTER = re.compile(r"^[A-Z0-9]+(-[A-Z0-9]+)+$")
 # Für de-DE: nur bekannte Wörter (wie in pruefstand/sprache.py)
 SS_ZU_SZ = {"grosse": "große", "gross": "groß", "Massnahme": "Maßnahme", "Massnahmen": "Maßnahmen",
-            "ausserdem": "außerdem", "weiss": "weiß", "heisst": "heißt", "Strasse": "Straße"}
+            "ausserdem": "außerdem", "Ausserdem": "Außerdem",
+            "regelmässig": "regelmäßig", "regelmässige": "regelmäßige", "weiss": "weiß", "heisst": "heißt", "Strasse": "Straße"}
 
 
 def lade_alle(wurzel: Path = WURZEL) -> list[tuple[Path, dict]]:
@@ -52,6 +54,12 @@ def pruefe_befund(pfad: Path, b: dict) -> list[str]:
             fehler.append(f"{pfad.name}: titel.{s} fehlt")
     if b.get("cwe") and not re.match(r"^CWE-\d+$", str(b["cwe"])):
         fehler.append(f"{pfad.name}: cwe muss die Form CWE-123 haben")
+    # YAML «>-» macht aus einem Zeilenumbruch ein Leerzeichen: «DNS-⏎Antworten» wird «DNS- Antworten».
+    # Erlaubt bleiben Ergänzungsstriche wie «Rechnungs- und CEO-Betrug».
+    for feld in ("geschaeftsleitung", "beschreibung", "auswirkung", "empfehlung"):
+        m = GETRENNT.search(str(b.get(feld) or ""))
+        if m:
+            fehler.append(f"{pfad.name}: {feld}: getrenntes Wort «{m.group(0)}» (Zeilenumbruch nach Bindestrich)")
     if "ß" in yaml.safe_dump(b, allow_unicode=True):
         fehler.append(f"{pfad.name}: Texte in Schweizer Schreibweise (ss statt ß); de-DE entsteht beim Export")
     return fehler

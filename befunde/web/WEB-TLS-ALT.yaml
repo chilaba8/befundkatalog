@@ -1,6 +1,6 @@
 id: WEB-TLS-ALT
 version: 1
-status: entwurf
+status: geprueft
 kategorie: Web
 schweregrad: mittel
 cwe: CWE-327               # Use of a Broken or Risky Cryptographic Algorithm

@@ -1,6 +1,6 @@
 id: DNSSEC-AUS
 version: 1
-status: entwurf
+status: geprueft
 kategorie: DNS
 schweregrad: niedrig
 cwe: CWE-345
@@ -16,8 +16,8 @@ beschreibung: >-
   liefert keine DNSKEY-Einträge. Validierende Resolver können die Echtheit der Antworten
   nicht prüfen.
 auswirkung: >-
-  Angreifer mit Zugriff auf den Netzweg oder einen Resolver können gefälschte DNS-
-  Antworten unterschieben (DNS-Spoofing, Cache-Poisoning) und z. B. Besucher oder
+  Angreifer mit Zugriff auf den Netzweg oder einen Resolver können gefälschte
+  DNS-Antworten unterschieben (DNS-Spoofing, Cache-Poisoning) und z. B. Besucher oder
   E-Mails auf eigene Server umleiten.
 empfehlung: >-
   DNSSEC beim DNS-Anbieter aktivieren und den DS-Eintrag an die Registry übermitteln

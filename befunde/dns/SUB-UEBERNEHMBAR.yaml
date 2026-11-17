@@ -1,6 +1,6 @@
 id: SUB-UEBERNEHMBAR
 version: 1
-status: entwurf
+status: geprueft
 kategorie: DNS
 schweregrad: hoch
 cwe: CWE-672               # Operation on a Resource after Expiration or Release

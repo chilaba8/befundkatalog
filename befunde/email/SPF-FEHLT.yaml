@@ -1,6 +1,6 @@
 id: SPF-FEHLT
 version: 1
-status: entwurf            # entwurf → geprueft (nach muttersprachlicher Prüfung)
+status: geprueft           # entwurf → geprueft (nach sprachlicher und fachlicher Prüfung)
 kategorie: E-Mail
 schweregrad: hoch          # kritisch | hoch | mittel | niedrig | info
 cwe: CWE-290               # Authentication Bypass by Spoofing
