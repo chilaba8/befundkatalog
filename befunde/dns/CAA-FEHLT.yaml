@@ -1,0 +1,29 @@
+id: CAA-FEHLT
+version: 1
+status: entwurf
+kategorie: DNS
+schweregrad: niedrig
+titel:
+  de: Kein CAA-Eintrag vorhanden
+  en: No CAA record present
+  es: No hay registro CAA
+geschaeftsleitung: >-
+  Es ist nicht festgelegt, welche Stellen Sicherheitszertifikate für Ihre Website ausstellen
+  dürfen. Das Risiko ist gering, die Korrektur ist ein einziger DNS-Eintrag.
+beschreibung: >-
+  Für {domain} (und die übergeordneten Namen) ist kein CAA-Eintrag vorhanden. Damit darf
+  jede öffentliche Zertifizierungsstelle TLS-Zertifikate für {domain} ausstellen.
+auswirkung: >-
+  Wird bei einer beliebigen Zertifizierungsstelle die Domain-Validierung umgangen oder
+  getäuscht, kann ein Angreifer ein gültiges Zertifikat für {domain} erhalten und damit
+  gefälschte Webseiten oder Mailserver glaubwürdig betreiben. Mit CAA müssen alle anderen
+  Zertifizierungsstellen die Ausstellung verweigern.
+empfehlung: >-
+  CAA-Eintrag mit den tatsächlich genutzten Zertifizierungsstellen anlegen, z. B.
+  «{domain}. CAA 0 issue "letsencrypt.org"», optional «0 iodef "mailto:security@{domain}"»
+  für Meldungen. Vorher beim Webhoster nachfragen und ALLE genutzten Zertifizierungsstellen
+  aufnehmen, sonst scheitert die automatische Erneuerung.
+pruefen: dig CAA {domain} +short
+referenzen:
+  - RFC 8659 – DNS Certification Authority Authorization (CAA) Resource Record
+  - CA/Browser Forum Baseline Requirements, Abschnitt 3.2.2.8 (CAA-Prüfung)

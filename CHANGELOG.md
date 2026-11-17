@@ -1,5 +1,10 @@
 # Änderungen
 
+## Unveröffentlicht
+
+- 2 neue Befunde (Entwurf) – jetzt 47: CAA-FEHLT (DNS) und AEHNLICH-OHNE-MAIL (E-Mail),
+  beide von pruefstand gemeldet, bisher ohne Text im Katalog.
+
 ## 0.2.0 – 2026-11-17
 
 - 32 neue Befunde – jetzt 45, für alle Warnungen und kritischen Befunde von pruefstand:

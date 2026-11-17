@@ -1,0 +1,27 @@
+id: AEHNLICH-OHNE-MAIL
+version: 1
+status: entwurf
+kategorie: E-Mail
+schweregrad: info
+cwe: CWE-451               # User Interface (UI) Misrepresentation of Critical Information
+titel:
+  de: Ähnliche Domain registriert, derzeit ohne E-Mail
+  en: Look-alike domain registered, currently without mail exchanger
+  es: Dominio parecido registrado, de momento sin correo
+geschaeftsleitung: >-
+  Jemand besitzt eine Domain, die fast wie Ihre aussieht. Für E-Mails ist sie derzeit
+  nicht eingerichtet, das kann sich aber jederzeit ändern.
+beschreibung: >-
+  Für die Domain {domain} wurden registrierte Tippfehler-Varianten (z. B. vertauschte
+  Buchstaben, verwechselbare Zeichen, andere Endung) ohne nutzbaren MX-Eintrag gefunden.
+  Die Inhaberschaft wurde nicht geprüft; es kann sich um legitime Drittfirmen handeln.
+auswirkung: >-
+  Derzeit kein unmittelbares Risiko für Betrug per E-Mail. Die Domain kann aber für
+  gefälschte Webseiten genutzt oder später mit E-Mail ausgestattet werden.
+empfehlung: >-
+  Inhaber der Varianten klären und die Domains regelmässig erneut prüfen. Wichtige
+  Varianten (.ch/.com) möglichst selbst registrieren und als eigene Domain mit Null-MX
+  und «v=spf1 -all» schützen.
+pruefen: dig MX <variante> +short
+referenzen:
+  - BACS – Meldeformular für Cybervorfälle (https://www.ncsc.admin.ch)

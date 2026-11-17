@@ -7,7 +7,7 @@ formuliert dieselben Befunde immer wieder neu. Öffentliche Sammlungen gibt es f
 auf Englisch. `befundkatalog` sammelt Befunde in verständlichem Deutsch: technisch für
 den Informatiker und in einem Satz für die Geschäftsleitung.
 
-> Status: 45 Befunde zu E-Mail, DNS, Web und offenen Diensten, sprachlich und fachlich
+> Status: 47 Befunde zu E-Mail, DNS, Web und offenen Diensten, sprachlich und fachlich
 > geprüft (`status: geprueft`). Der Katalog wächst – Korrekturen und neue Befunde sind willkommen.
 
 ## Aufbau eines Befunds
@@ -30,7 +30,7 @@ Export mit `--sz` ß und „…“.
 
 ## Befunde
 
-45 Befunde – E-Mail 24, DNS 7, Web 8, Netzwerk 6 – sortiert nach Kategorie und Schweregrad.
+47 Befunde – E-Mail 25, DNS 8, Web 8, Netzwerk 6 – sortiert nach Kategorie und Schweregrad.
 
 | Kategorie | ID | Titel | Schweregrad |
 |---|---|---|---|
@@ -58,11 +58,13 @@ Export mit `--sz` ß und „…“.
 | E-Mail | DMARC-KEIN-RUA | Keine DMARC-Berichte (rua) konfiguriert | niedrig |
 | E-Mail | MTASTS-FEHLT | Keine MTA-STS-Richtlinie für eingehende E-Mails | niedrig |
 | E-Mail | MTASTS-RICHTLINIE-FEHLT | MTA-STS angekündigt, Richtlinie nicht abrufbar | niedrig |
+| E-Mail | AEHNLICH-OHNE-MAIL | Ähnliche Domain registriert, derzeit ohne E-Mail | info |
 | DNS | DNSSEC-KAPUTT | DNSSEC fehlerhaft (DS ohne DNSKEY) | hoch |
 | DNS | NS-KEINE | Keine Nameserver gefunden | hoch |
 | DNS | SUB-UEBERNEHMBAR | Subdomain zeigt auf gekündigten Dienst (Subdomain-Takeover möglich) | hoch |
 | DNS | NS-NUR-EINER | Nur ein Nameserver | mittel |
 | DNS | SUB-DIENST-FREI | Subdomain zeigt Fehlerseite eines Cloud-Dienstes (möglicherweise übernehmbar) | mittel |
+| DNS | CAA-FEHLT | Kein CAA-Eintrag vorhanden | niedrig |
 | DNS | DNSSEC-AUS | DNSSEC nicht aktiviert | niedrig |
 | DNS | SUB-VERWAIST | Subdomain zeigt auf ein nicht mehr existierendes Ziel | niedrig |
 | Web | WEB-ZERT-ABGELAUFEN | TLS-Zertifikat abgelaufen | hoch |
