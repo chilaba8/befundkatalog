@@ -12,9 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # pruefstand für den Abgleich der Befund-IDs (tests/test_pruefstand_abgleich.py)
+      - uses: actions/checkout@v4
+        with:
+          repository: chilaba8/pruefstand
+          path: _pruefstand
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: pip install pyyaml pytest
       - run: python werkzeuge/katalog.py pruefen
-      - run: pytest -q
+      - run: pytest -q tests
+        env:
+          PRUEFSTAND_SRC: _pruefstand/src/pruefstand
