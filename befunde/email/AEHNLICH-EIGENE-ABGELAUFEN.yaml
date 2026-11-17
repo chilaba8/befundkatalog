@@ -1,0 +1,25 @@
+id: AEHNLICH-EIGENE-ABGELAUFEN
+version: 1
+status: geprueft
+kategorie: E-Mail
+schweregrad: mittel
+cwe: CWE-672
+titel:
+  de: Eigene Schutz-Domain abgelaufen
+  en: Owned defensive domain has expired
+  es: Dominio defensivo propio caducado
+geschaeftsleitung: >-
+  Eine Domain, die Sie zum Schutz besessen haben, gehört Ihnen nicht mehr. Jemand anderes
+  könnte sie registrieren und für Betrug nutzen.
+beschreibung: >-
+  Eine vom Kunden als eigene bestätigte Variante von {domain} ist nicht mehr registriert
+  (keine Nameserver, NXDOMAIN).
+auswirkung: >-
+  Abgelaufene Domains werden gezielt neu registriert. Ein Betrüger erhält damit eine
+  Domain, die Mitarbeitende und Kunden bereits als «Ihre» kennen.
+empfehlung: >-
+  Beim Registrar prüfen und die Domain sofort wieder registrieren. Automatische
+  Verlängerung einschalten und Domains in einem Inventar mit Ablaufdatum führen.
+pruefen: dig NS <variante> +short && whois <variante>
+referenzen:
+  - ICANN – Expired Registration Recovery Policy (ERRP)

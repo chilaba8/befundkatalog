@@ -26,7 +26,8 @@ ID_MUSTER = re.compile(r"^[A-Z0-9]+(-[A-Z0-9]+)+$")
 # Für de-DE: nur bekannte Wörter (wie in pruefstand/sprache.py)
 SS_ZU_SZ = {"grosse": "große", "gross": "groß", "Massnahme": "Maßnahme", "Massnahmen": "Maßnahmen",
             "ausserdem": "außerdem", "Ausserdem": "Außerdem",
-            "regelmässig": "regelmäßig", "regelmässige": "regelmäßige", "weiss": "weiß", "heisst": "heißt", "Strasse": "Straße"}
+            "regelmässig": "regelmäßig", "regelmässige": "regelmäßige", "liessen": "ließen",
+            "Mindestmass": "Mindestmaß", "weiss": "weiß", "heisst": "heißt", "Strasse": "Straße"}
 
 
 def lade_alle(wurzel: Path = WURZEL) -> list[tuple[Path, dict]]:

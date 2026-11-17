@@ -1,0 +1,24 @@
+id: NS-KEINE
+version: 1
+status: geprueft
+kategorie: DNS
+schweregrad: hoch
+titel:
+  de: Keine Nameserver gefunden
+  en: No name servers found
+  es: No se encontraron servidores DNS
+geschaeftsleitung: >-
+  Ihre Domain ist im Internet nicht auffindbar: Webseite und E-Mail funktionieren nicht.
+beschreibung: >-
+  Für {domain} liefern weder die Registry noch die Zone NS-Einträge (Domain nicht
+  delegiert, abgelaufen oder gesperrt).
+auswirkung: >-
+  Webseite und E-Mail sind nicht erreichbar. Läuft die Domain ab, kann sie ein Dritter
+  registrieren und E-Mails an die Firma empfangen.
+empfehlung: >-
+  Beim Domain-Anbieter den Status der Domain und die eingetragenen Nameserver prüfen;
+  Domain gegebenenfalls verlängern.
+pruefen: dig NS {domain} +short && whois {domain}
+referenzen:
+  - RFC 1034, Abschnitt 4.2 (Zonen und Delegation)
+  - "https://www.rfc-editor.org/rfc/rfc1034#section-4.2"

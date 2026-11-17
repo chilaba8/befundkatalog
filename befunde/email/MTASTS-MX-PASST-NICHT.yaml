@@ -1,0 +1,27 @@
+id: MTASTS-MX-PASST-NICHT
+version: 1
+status: geprueft
+kategorie: E-Mail
+schweregrad: mittel
+titel:
+  de: MTA-STS-Richtlinie passt nicht zu den Mailservern
+  en: MTA-STS policy does not match MX hosts
+  es: La política MTA-STS no coincide con los servidores MX
+geschaeftsleitung: >-
+  Die Regel für verschlüsselte E-Mails nennt nicht alle Ihre Mailserver. Im strengen Modus
+  können dadurch E-Mails an Sie abgewiesen werden.
+beschreibung: >-
+  Mindestens ein MX-Host von {domain} wird von keiner «mx:»-Zeile der MTA-STS-Richtlinie
+  abgedeckt.
+auswirkung: >-
+  Im Modus «enforce» stellen sendende Server nicht an diese MX-Hosts zu – E-Mails an die
+  Domain gehen verloren oder werden verzögert. Im Modus «testing» melden TLS-RPT-Berichte
+  Fehler.
+empfehlung: >-
+  Die mx:-Zeilen an alle aktuellen MX-Hosts anpassen (Platzhalter wie
+  «*.mail.protection.outlook.com» sind erlaubt) und danach die id im _mta-sts-Eintrag
+  ändern.
+pruefen: "dig MX {domain} +short && curl -s https://mta-sts.{domain}/.well-known/mta-sts.txt"
+referenzen:
+  - RFC 8461, Abschnitt 4.1 (MX-Abgleich)
+  - "https://www.rfc-editor.org/rfc/rfc8461#section-4.1"

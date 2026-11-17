@@ -1,0 +1,25 @@
+id: WEB-ZERT-ABGELAUFEN
+version: 1
+status: geprueft
+kategorie: Web
+schweregrad: hoch
+cwe: CWE-324
+titel:
+  de: TLS-Zertifikat abgelaufen
+  en: TLS certificate expired
+  es: Certificado TLS caducado
+geschaeftsleitung: >-
+  Das Sicherheitszertifikat Ihrer Webseite ist abgelaufen. Browser warnen Besucher vor
+  Ihrer Seite.
+beschreibung: >-
+  Das Zertifikat von https://{domain}/ ist nicht mehr gültig (Ablaufdatum überschritten).
+auswirkung: >-
+  Browser blockieren die Seite mit einer Sicherheitswarnung. Besucher brechen ab oder
+  gewöhnen sich an das Wegklicken von Warnungen; automatische Schnittstellen schlagen
+  fehl.
+empfehlung: >-
+  Zertifikat sofort erneuern und die automatische Erneuerung (z. B. ACME/Let's Encrypt)
+  einrichten und überwachen.
+pruefen: "echo | openssl s_client -connect {domain}:443 -servername {domain} 2>/dev/null | openssl x509 -noout -enddate"
+referenzen:
+  - CA/Browser Forum – Baseline Requirements for TLS Server Certificates

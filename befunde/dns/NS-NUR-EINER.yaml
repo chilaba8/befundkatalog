@@ -1,0 +1,24 @@
+id: NS-NUR-EINER
+version: 1
+status: geprueft
+kategorie: DNS
+schweregrad: mittel
+titel:
+  de: Nur ein Nameserver
+  en: Only one name server
+  es: Un solo servidor DNS
+geschaeftsleitung: >-
+  Ihre Domain hängt an einem einzigen Server. Fällt er aus, sind Webseite und E-Mail nicht
+  erreichbar.
+beschreibung: >-
+  Für {domain} ist nur ein NS-Eintrag vorhanden.
+auswirkung: >-
+  Ein einzelner Nameserver ist ein Single Point of Failure: Wartung, Störung oder ein
+  Angriff auf diesen Server machen alle Dienste der Domain unerreichbar.
+empfehlung: >-
+  Beim DNS-Anbieter mindestens zwei Nameserver in unterschiedlichen Netzen eintragen (RFC
+  2182 empfiehlt mehrere, geografisch getrennte Server).
+pruefen: dig NS {domain} +short
+referenzen:
+  - RFC 2182 – Selection and Operation of Secondary DNS Servers
+  - "https://www.rfc-editor.org/rfc/rfc2182"

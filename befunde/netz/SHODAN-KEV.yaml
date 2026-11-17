@@ -1,0 +1,27 @@
+id: SHODAN-KEV
+version: 1
+status: geprueft
+kategorie: Netzwerk
+schweregrad: hoch
+cwe: CWE-1395
+titel:
+  de: Aktiv ausgenutzte Sicherheitslücke (CISA KEV)
+  en: Known exploited vulnerability (CISA KEV)
+  es: Vulnerabilidad explotada activamente (CISA KEV)
+geschaeftsleitung: >-
+  Auf einem Ihrer Server läuft Software mit einer Lücke, die nachweislich angegriffen
+  wird. Sie sollte zeitnah geschlossen werden.
+beschreibung: >-
+  Für eine IP-Adresse von {domain} meldet Shodan eine Softwareversion mit einer CVE aus
+  dem CISA-Katalog «Known Exploited Vulnerabilities». Die Version stammt aus dem Banner
+  und ist zu bestätigen.
+auswirkung: >-
+  Für diese Lücken gibt es öffentliche Angriffe. Ungepatchte Systeme werden gezielt
+  gesucht und übernommen.
+empfehlung: >-
+  Zeitnah das Hersteller-Update einspielen und bestätigen, dass die eingesetzte Version
+  betroffen ist. Bis dahin den Zugriff aus dem Internet einschränken.
+pruefen: "https://internetdb.shodan.io/<ip>"
+referenzen:
+  - CISA – Known Exploited Vulnerabilities Catalog
+  - "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"

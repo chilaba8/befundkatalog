@@ -1,0 +1,28 @@
+id: SPF-FEHLER
+version: 1
+status: geprueft
+kategorie: E-Mail
+schweregrad: mittel
+cwe: CWE-290
+titel:
+  de: SPF-Eintrag fehlerhaft
+  en: Invalid SPF record
+  es: Registro SPF erróneo
+geschaeftsleitung: >-
+  Ihr Eintrag, der festlegt, wer E-Mails in Ihrem Namen senden darf, enthält Fehler. Viele
+  Empfänger werten ihn deshalb als ungültig – der Schutz wirkt nicht.
+beschreibung: >-
+  Der SPF-Eintrag der Domain {domain} ist syntaktisch fehlerhaft oder mehrfach vorhanden
+  (mehr als ein TXT-Eintrag mit «v=spf1»). Empfangende Mailserver werten das als
+  «permerror».
+auswirkung: >-
+  Bei «permerror» gilt SPF als nicht bestanden. DMARC kann sich dann nur noch auf DKIM
+  stützen; ohne DKIM werden gefälschte E-Mails nicht erkannt und echte E-Mails landen
+  häufiger im Spam.
+empfehlung: >-
+  Alle SPF-Angaben in genau EINEM TXT-Eintrag zusammenführen und die Syntax prüfen
+  (Mechanismen, Leerzeichen, Abschluss «-all»).
+pruefen: dig TXT {domain} +short | grep spf1
+referenzen:
+  - RFC 7208, Abschnitt 3.2 (mehrere Einträge) und 4.6 (Syntax)
+  - "https://www.rfc-editor.org/rfc/rfc7208#section-3.2"

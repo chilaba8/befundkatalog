@@ -1,0 +1,25 @@
+id: WEB-NICHT-ERREICHBAR
+version: 1
+status: geprueft
+kategorie: Web
+schweregrad: mittel
+cwe: CWE-319
+titel:
+  de: Webseite per HTTPS nicht erreichbar
+  en: Website not reachable via HTTPS
+  es: Sitio web no accesible por HTTPS
+geschaeftsleitung: >-
+  Ihre Webseite ist über eine verschlüsselte Verbindung (https) nicht erreichbar. Besucher
+  sehen eine Fehlermeldung oder surfen ungeschützt.
+beschreibung: >-
+  Unter https://{domain}/ antwortet kein Webserver mit gültiger TLS-Verbindung (Verbindung
+  abgelehnt, Zeitüberschreitung oder TLS-Fehler).
+auswirkung: >-
+  Besucher erreichen die Seite nicht oder nur unverschlüsselt über HTTP. Eingaben
+  (Kontaktformulare, Logins) können mitgelesen werden; Suchmaschinen werten die Seite ab.
+empfehlung: >-
+  Prüfen, ob der Webserver läuft und Port 443 erreichbar ist, und ein gültiges Zertifikat
+  einrichten (z. B. kostenlos über Let's Encrypt).
+pruefen: "curl -sI https://{domain}/"
+referenzen:
+  - BSI TR-02102-2 – Verwendung von Transport Layer Security (TLS)

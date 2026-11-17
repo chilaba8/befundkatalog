@@ -1,0 +1,25 @@
+id: DNSSEC-KAPUTT
+version: 1
+status: geprueft
+kategorie: DNS
+schweregrad: hoch
+titel:
+  de: DNSSEC fehlerhaft (DS ohne DNSKEY)
+  en: Broken DNSSEC (DS without DNSKEY)
+  es: DNSSEC roto (DS sin DNSKEY)
+geschaeftsleitung: >-
+  Die digitale Unterschrift Ihrer Domain ist fehlerhaft. Viele Nutzer erreichen Ihre
+  Webseite und E-Mail dadurch gar nicht mehr.
+beschreibung: >-
+  Bei der Registry ist für {domain} ein DS-Eintrag hinterlegt, die Zone liefert aber keine
+  passenden DNSKEY-Einträge (z. B. nach einem Anbieterwechsel).
+auswirkung: >-
+  Validierende Resolver (z. B. Google, Quad9, Cloudflare) antworten mit SERVFAIL. Für
+  deren Nutzer ist die Domain nicht erreichbar – Webseite und E-Mail fallen aus.
+empfehlung: >-
+  Sofort beim DNS-Anbieter DNSSEC wieder aktivieren oder den DS-Eintrag bei der Registry
+  entfernen. Bei Anbieterwechseln DNSSEC immer zuerst sauber abschalten.
+pruefen: dig DS {domain} +short && dig DNSKEY {domain} +short && dig {domain} @9.9.9.9
+referenzen:
+  - RFC 4035, Abschnitt 5 (Validierung)
+  - "https://www.rfc-editor.org/rfc/rfc4035#section-5"

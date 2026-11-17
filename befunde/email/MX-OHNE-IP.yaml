@@ -1,0 +1,27 @@
+id: MX-OHNE-IP
+version: 1
+status: geprueft
+kategorie: E-Mail
+schweregrad: hoch
+titel:
+  de: Mailserver ohne IP-Adresse (MX nicht auflösbar)
+  en: Mail exchanger without IP address
+  es: Servidor de correo sin dirección IP
+geschaeftsleitung: >-
+  Einer Ihrer eingetragenen Mailserver existiert nicht. E-Mails an Ihre Firma können
+  dadurch verzögert werden oder verloren gehen.
+beschreibung: >-
+  Mindestens ein MX-Eintrag von {domain} verweist auf einen Hostnamen ohne A- oder
+  AAAA-Eintrag.
+auswirkung: >-
+  Sendende Server versuchen zuerst diesen Mailserver und weichen je nach Priorität erst
+  verzögert auf einen anderen aus – gibt es keinen weiteren, gehen die E-Mails verloren.
+  Zeigt der Name auf eine abgelaufene Domain, könnte ein Dritter ihn übernehmen und
+  E-Mails empfangen.
+empfehlung: >-
+  MX-Eintrag korrigieren oder entfernen. Bei fremden Hostnamen prüfen, ob die Domain noch
+  Ihnen bzw. Ihrem Anbieter gehört.
+pruefen: dig MX {domain} +short && dig A <mx-host> +short
+referenzen:
+  - RFC 5321, Abschnitt 5.1 (MX-Auflösung)
+  - "https://www.rfc-editor.org/rfc/rfc5321#section-5.1"

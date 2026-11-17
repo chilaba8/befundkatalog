@@ -1,0 +1,27 @@
+id: WEB-KEINE-HTTPS-WEITERLEITUNG
+version: 1
+status: geprueft
+kategorie: Web
+schweregrad: mittel
+cwe: CWE-319
+titel:
+  de: Keine Weiterleitung von HTTP auf HTTPS
+  en: No redirect from HTTP to HTTPS
+  es: Sin redirección de HTTP a HTTPS
+geschaeftsleitung: >-
+  Ihre Webseite ist auch unverschlüsselt erreichbar. Wer die Adresse ohne «https»
+  eintippt, surft ungeschützt.
+beschreibung: >-
+  Die Webseite http://{domain}/ liefert Inhalte aus, statt dauerhaft (301/308) auf
+  https:// weiterzuleiten.
+auswirkung: >-
+  Besucher, die die Adresse ohne https:// eingeben oder alten Links folgen, übertragen
+  Daten im Klartext. In fremden WLANs können Angreifer Inhalte verändern oder Eingaben
+  mitlesen.
+empfehlung: >-
+  Dauerhafte Weiterleitung (301) von http:// auf https:// einrichten und danach HSTS
+  aktivieren.
+pruefen: "curl -sI http://{domain}/ | head -3"
+referenzen:
+  - OWASP WSTG-CRYP-03 – Sensitive Information Sent via Unencrypted Channels
+  - RFC 6797 – HSTS

@@ -1,0 +1,26 @@
+id: SHODAN-STEUERUNG
+version: 1
+status: geprueft
+kategorie: Netzwerk
+schweregrad: kritisch
+cwe: CWE-668
+titel:
+  de: Industrie- oder Gebäudesteuerung aus dem Internet erreichbar
+  en: Industrial or building control system exposed to the internet
+  es: Sistema de control industrial o de edificios expuesto a Internet
+geschaeftsleitung: >-
+  Eine Steuerung Ihrer Produktion oder Gebäudetechnik ist aus dem Internet erreichbar.
+  Angreifer könnten Anlagen stören oder beschädigen.
+beschreibung: >-
+  Für eine IP-Adresse von {domain} meldet Shodan offene Steuerungsprotokolle (z. B. Modbus
+  502, Siemens S7 102, BACnet 47808).
+auswirkung: >-
+  Industrie- und Gebäudeprotokolle haben oft keine Anmeldung. Ein Zugriff kann Produktion,
+  Heizung, Lüftung oder Zutritt beeinflussen – mit Sach- und Personenschäden.
+empfehlung: >-
+  Sofort vom Internet trennen. Fernwartung nur über VPN oder ein getrenntes Netz mit
+  Mehrfaktor-Anmeldung; Hersteller bzw. Integrator einbeziehen.
+pruefen: "nmap -Pn -p 502,102,47808 <ip>   # nur mit Einverständnis des Inhabers"
+referenzen:
+  - BWL – IKT-Minimalstandard
+  - CISA – Industrial Control Systems Security

@@ -1,0 +1,28 @@
+id: SHODAN-DATENBANK
+version: 1
+status: geprueft
+kategorie: Netzwerk
+schweregrad: kritisch
+cwe: CWE-668
+titel:
+  de: Datenbank oder Server-Schnittstelle aus dem Internet erreichbar
+  en: Database or server interface exposed to the internet
+  es: Base de datos o interfaz de servidor expuesta a Internet
+geschaeftsleitung: >-
+  Eine Datenbank Ihrer Firma ist direkt aus dem Internet erreichbar. Kunden- oder
+  Geschäftsdaten könnten abgegriffen werden.
+beschreibung: >-
+  Für eine IP-Adresse von {domain} meldet Shodan offene Datenbank- oder
+  Verwaltungsschnittstellen (z. B. MySQL 3306, PostgreSQL 5432, MongoDB 27017,
+  Elasticsearch 9200, Redis 6379).
+auswirkung: >-
+  Offene Datenbanken werden automatisiert gesucht. Fehlt eine Anmeldung oder ist sie
+  schwach, drohen Datenabfluss, Löschung oder Erpressung. Bei Personendaten kann eine
+  Meldepflicht an den EDÖB bestehen (nDSG Art. 24).
+empfehlung: >-
+  In der Firewall sperren: Datenbanken nur intern oder über VPN erreichbar machen.
+  Zugangsdaten ändern und Protokolle auf fremde Zugriffe prüfen.
+pruefen: "nmap -Pn -p 3306,5432,27017,9200,6379 <ip>   # nur mit Einverständnis des Inhabers"
+referenzen:
+  - OWASP – Database Security Cheat Sheet
+  - nDSG Art. 8 (Datensicherheit) und Art. 24 (Meldung von Verletzungen)

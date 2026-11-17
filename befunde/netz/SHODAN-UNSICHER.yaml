@@ -1,0 +1,25 @@
+id: SHODAN-UNSICHER
+version: 1
+status: geprueft
+kategorie: Netzwerk
+schweregrad: mittel
+cwe: CWE-319
+titel:
+  de: Unverschlüsselte oder heikle Verwaltungsdienste aus dem Internet erreichbar
+  en: Unencrypted or sensitive management services exposed
+  es: Servicios de administración sin cifrar o sensibles expuestos
+geschaeftsleitung: >-
+  Verwaltungszugänge Ihrer Server sind aus dem Internet erreichbar, teils ohne
+  Verschlüsselung.
+beschreibung: >-
+  Für eine IP-Adresse von {domain} meldet Shodan offene Dienste wie FTP 21, SMB 445, SNMP
+  161 oder Verwaltungsoberflächen.
+auswirkung: >-
+  Unverschlüsselte Dienste übertragen Passwörter im Klartext; SMB und SNMP verraten
+  interne Informationen und sind häufige Angriffsziele.
+empfehlung: >-
+  Abschalten, wenn nicht nötig; sonst nur über VPN erreichbar machen und durch
+  verschlüsselte Varianten ersetzen (SFTP statt FTP, SNMPv3).
+pruefen: "nmap -Pn -p 21,445,161 <ip>   # nur mit Einverständnis des Inhabers"
+referenzen:
+  - OWASP WSTG-CONF-01 – Test Network Infrastructure Configuration

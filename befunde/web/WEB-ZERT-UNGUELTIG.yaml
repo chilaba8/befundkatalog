@@ -1,0 +1,26 @@
+id: WEB-ZERT-UNGUELTIG
+version: 1
+status: geprueft
+kategorie: Web
+schweregrad: hoch
+titel:
+  de: TLS-Zertifikat ungültig
+  en: Invalid TLS certificate
+  es: Certificado TLS no válido
+geschaeftsleitung: >-
+  Das Sicherheitszertifikat Ihrer Webseite ist ungültig. Browser zeigen Besuchern eine
+  Warnung – viele brechen ab.
+beschreibung: >-
+  Das Zertifikat von https://{domain}/ wird nicht akzeptiert (z. B. falscher Hostname,
+  selbst signiert, unvollständige Zertifikatskette).
+auswirkung: >-
+  Besucher sehen eine Sicherheitswarnung. Wer sie wegklickt, gewöhnt sich daran – und
+  erkennt einen echten Angriff (Man-in-the-Middle) nicht mehr. Ausserdem leiden Vertrauen
+  und Suchmaschinen-Ranking.
+empfehlung: >-
+  Gültiges Zertifikat für alle verwendeten Namen (mit und ohne www) einrichten, inkl.
+  vollständiger Zertifikatskette. Bei den meisten Hostern kostenlos über Let's Encrypt.
+pruefen: "openssl s_client -connect {domain}:443 -servername {domain} </dev/null | grep -i verify"
+referenzen:
+  - RFC 9525 – Prüfung von Hostnamen in TLS-Zertifikaten
+  - "https://www.rfc-editor.org/rfc/rfc9525"

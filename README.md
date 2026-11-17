@@ -7,8 +7,8 @@ formuliert dieselben Befunde immer wieder neu. Öffentliche Sammlungen gibt es f
 auf Englisch. `befundkatalog` sammelt Befunde in verständlichem Deutsch: technisch für
 den Informatiker und in einem Satz für die Geschäftsleitung.
 
-> Status: 13 Befunde zu E-Mail, DNS und Web, sprachlich und fachlich geprüft
-> (`status: geprueft`). Der Katalog wächst – Korrekturen und neue Befunde sind willkommen.
+> Status: 45 Befunde zu E-Mail, DNS, Web und offenen Diensten, sprachlich und fachlich
+> geprüft (`status: geprueft`). Der Katalog wächst – Korrekturen und neue Befunde sind willkommen.
 
 ## Aufbau eines Befunds
 
@@ -18,33 +18,70 @@ Eine YAML-Datei pro Befund, z. B. [`befunde/email/DMARC-FEHLT.yaml`](befunde/ema
 |---|---|
 | `id` | stabiler Schlüssel – identisch mit den IDs von [pruefstand](https://github.com/chilaba8/pruefstand) |
 | `schweregrad` | kritisch · hoch · mittel · niedrig · info |
-| `cwe` | passende CWE-Nummer |
+| `cwe` | passende CWE-Nummer (falls es eine gibt) |
 | `titel` | Deutsch, Englisch, Spanisch |
 | `geschaeftsleitung` | ein bis zwei Sätze ohne Fachbegriffe |
 | `beschreibung`, `auswirkung`, `empfehlung` | technischer Text; `{domain}` wird beim Export ersetzt |
-| `pruefen` | Befehl, mit dem man die Behebung prüft |
-| `referenzen` | RFC, Normen, offizielle Doku |
+| `pruefen` | Befehl, mit dem sich die Behebung überprüfen lässt |
+| `referenzen` | RFC, Normen, offizielle Dokumentation |
 
-Texte sind in **Schweizer Schreibweise** (ss, «…»). Für Deutschland erzeugt der Export
-ß und „…“ (`--sz`).
+Die Texte sind in **Schweizer Schreibweise** (ss, «…») verfasst. Für Deutschland erzeugt der
+Export mit `--sz` ß und „…“.
 
 ## Befunde
 
+45 Befunde – E-Mail 24, DNS 7, Web 8, Netzwerk 6 – sortiert nach Kategorie und Schweregrad.
+
 | Kategorie | ID | Titel | Schweregrad |
 |---|---|---|---|
-| DNS | DNSSEC-AUS | DNSSEC nicht aktiviert | niedrig |
-| DNS | SUB-UEBERNEHMBAR | Subdomain zeigt auf gekündigten Dienst (Subdomain-Takeover möglich) | hoch |
+| E-Mail | SPF-ALL-OFFEN | SPF erlaubt allen Servern den Versand (+all / ?all) | kritisch |
+| E-Mail | AEHNLICH-NEU-REGISTRIERT | Ähnliche Domain mit E-Mail kürzlich registriert | hoch |
+| E-Mail | DMARC-FEHLT | Kein DMARC-Eintrag vorhanden | hoch |
+| E-Mail | DMARC-MEHRFACH | Mehrere DMARC-Einträge vorhanden | hoch |
+| E-Mail | DMARC-P-NONE | DMARC nur im Beobachtungsmodus (p=none) | hoch |
+| E-Mail | DMARC-UNGUELTIG | DMARC-Eintrag ungültig | hoch |
+| E-Mail | MX-OHNE-IP | Mailserver ohne IP-Adresse (MX nicht auflösbar) | hoch |
+| E-Mail | SPF-FEHLT | Kein SPF-Eintrag vorhanden | hoch |
+| E-Mail | SPF-ZU-VIELE-LOOKUPS | SPF überschreitet die Grenze von 10 DNS-Abfragen | hoch |
+| E-Mail | AEHNLICH-EIGENE-ABGELAUFEN | Eigene Schutz-Domain abgelaufen | mittel |
+| E-Mail | AEHNLICH-EIGENE-UNGESCHUETZT | Eigene Schutz-Domain ohne SPF/DMARC | mittel |
 | E-Mail | AEHNLICH-MIT-MAIL | Ähnliche Domain mit E-Mail-Empfang registriert | mittel |
 | E-Mail | DKIM-NICHT-GEFUNDEN | Kein DKIM-Schlüssel unter den üblichen Selektoren gefunden | mittel |
-| E-Mail | DMARC-FEHLT | Kein DMARC-Eintrag vorhanden | hoch |
+| E-Mail | DKIM-SCHWACH | DKIM-Schlüssel zu kurz (unter 2048 Bit) | mittel |
+| E-Mail | DKIM-WIDERRUFEN | Nur widerrufene DKIM-Schlüssel gefunden | mittel |
+| E-Mail | DMARC-PCT | DMARC gilt nur für einen Teil der E-Mails (pct < 100) | mittel |
+| E-Mail | DMARC-SP-NONE | Subdomains nicht durch DMARC geschützt (sp=none) | mittel |
+| E-Mail | DNSBL-GELISTET | Mailserver auf einer Spam-Sperrliste | mittel |
+| E-Mail | MTASTS-MX-PASST-NICHT | MTA-STS-Richtlinie passt nicht zu den Mailservern | mittel |
+| E-Mail | SPF-FEHLER | SPF-Eintrag fehlerhaft | mittel |
+| E-Mail | SPF-OHNE-ALL | SPF-Eintrag ohne Abschluss («all» fehlt) | mittel |
 | E-Mail | DMARC-KEIN-RUA | Keine DMARC-Berichte (rua) konfiguriert | niedrig |
-| E-Mail | DMARC-P-NONE | DMARC nur im Beobachtungsmodus (p=none) | hoch |
 | E-Mail | MTASTS-FEHLT | Keine MTA-STS-Richtlinie für eingehende E-Mails | niedrig |
-| E-Mail | SPF-ALL-OFFEN | SPF erlaubt allen Servern den Versand (+all / ?all) | kritisch |
-| E-Mail | SPF-FEHLT | Kein SPF-Eintrag vorhanden | hoch |
-| Web | WEB-HSTS-FEHLT | HTTP Strict Transport Security (HSTS) fehlt oder ist zu kurz | niedrig |
-| Web | WEB-SECURITYTXT-FEHLT | Keine security.txt veröffentlicht | info |
+| E-Mail | MTASTS-RICHTLINIE-FEHLT | MTA-STS angekündigt, Richtlinie nicht abrufbar | niedrig |
+| DNS | DNSSEC-KAPUTT | DNSSEC fehlerhaft (DS ohne DNSKEY) | hoch |
+| DNS | NS-KEINE | Keine Nameserver gefunden | hoch |
+| DNS | SUB-UEBERNEHMBAR | Subdomain zeigt auf gekündigten Dienst (Subdomain-Takeover möglich) | hoch |
+| DNS | NS-NUR-EINER | Nur ein Nameserver | mittel |
+| DNS | SUB-DIENST-FREI | Subdomain zeigt Fehlerseite eines Cloud-Dienstes (möglicherweise übernehmbar) | mittel |
+| DNS | DNSSEC-AUS | DNSSEC nicht aktiviert | niedrig |
+| DNS | SUB-VERWAIST | Subdomain zeigt auf ein nicht mehr existierendes Ziel | niedrig |
+| Web | WEB-ZERT-ABGELAUFEN | TLS-Zertifikat abgelaufen | hoch |
+| Web | WEB-ZERT-UNGUELTIG | TLS-Zertifikat ungültig | hoch |
+| Web | WEB-KEINE-HTTPS-WEITERLEITUNG | Keine Weiterleitung von HTTP auf HTTPS | mittel |
+| Web | WEB-NICHT-ERREICHBAR | Webseite per HTTPS nicht erreichbar | mittel |
 | Web | WEB-TLS-ALT | Veraltete TLS-Versionen 1.0/1.1 aktiviert | mittel |
+| Web | WEB-HSTS-FEHLT | HTTP Strict Transport Security (HSTS) fehlt oder ist zu kurz | niedrig |
+| Web | WEB-ZERT-LAEUFT-AB | TLS-Zertifikat läuft bald ab | niedrig |
+| Web | WEB-SECURITYTXT-FEHLT | Keine security.txt veröffentlicht | info |
+| Netzwerk | SHODAN-DATENBANK | Datenbank oder Server-Schnittstelle aus dem Internet erreichbar | kritisch |
+| Netzwerk | SHODAN-FERNZUGRIFF | Fernzugriff direkt aus dem Internet erreichbar (z. B. RDP) | kritisch |
+| Netzwerk | SHODAN-KEV-RANSOMWARE | Sicherheitslücke, die von Ransomware-Gruppen ausgenutzt wird (CISA KEV) | kritisch |
+| Netzwerk | SHODAN-STEUERUNG | Industrie- oder Gebäudesteuerung aus dem Internet erreichbar | kritisch |
+| Netzwerk | SHODAN-KEV | Aktiv ausgenutzte Sicherheitslücke (CISA KEV) | hoch |
+| Netzwerk | SHODAN-UNSICHER | Unverschlüsselte oder heikle Verwaltungsdienste aus dem Internet erreichbar | mittel |
+
+Die Befunde der Kategorie **Netzwerk** beruhen auf öffentlichen Daten (Shodan InternetDB, CISA KEV).
+Die `nmap`-Befehle unter `pruefen` nur mit Einverständnis des Inhabers ausführen.
 
 ## Werkzeuge
 

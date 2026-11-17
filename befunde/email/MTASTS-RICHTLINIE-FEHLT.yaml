@@ -1,0 +1,28 @@
+id: MTASTS-RICHTLINIE-FEHLT
+version: 1
+status: geprueft
+kategorie: E-Mail
+schweregrad: niedrig
+cwe: CWE-319
+titel:
+  de: MTA-STS angekündigt, Richtlinie nicht abrufbar
+  en: MTA-STS announced but policy unavailable
+  es: MTA-STS anunciado, política no disponible
+geschaeftsleitung: >-
+  Ihre Domain kündigt erzwungene Verschlüsselung für E-Mails an, die zugehörige Datei
+  fehlt aber. Die Verschlüsselung wird deshalb nicht erzwungen.
+beschreibung: >-
+  Für {domain} existiert der TXT-Eintrag _mta-sts, die Richtlinie unter
+  https://mta-sts.{domain}/.well-known/mta-sts.txt ist aber nicht abrufbar oder ungültig
+  (Zertifikat, Weiterleitung, Inhalt).
+auswirkung: >-
+  Sendende Server ignorieren MTA-STS ohne gültige Richtlinie und stellen opportunistisch
+  zu. Ein Angreifer auf dem Übertragungsweg kann STARTTLS unterdrücken und E-Mails
+  mitlesen.
+empfehlung: >-
+  Richtlinie unter der genannten Adresse mit gültigem Zertifikat und ohne Weiterleitung
+  bereitstellen (version, mode, mx, max_age) oder den _mta-sts-Eintrag entfernen.
+pruefen: "curl -s https://mta-sts.{domain}/.well-known/mta-sts.txt"
+referenzen:
+  - RFC 8461, Abschnitt 3.2 (Richtlinie)
+  - "https://www.rfc-editor.org/rfc/rfc8461#section-3.2"

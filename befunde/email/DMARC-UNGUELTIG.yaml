@@ -1,0 +1,26 @@
+id: DMARC-UNGUELTIG
+version: 1
+status: geprueft
+kategorie: E-Mail
+schweregrad: hoch
+cwe: CWE-290
+titel:
+  de: DMARC-Eintrag ungültig
+  en: Invalid DMARC record
+  es: Registro DMARC no válido
+geschaeftsleitung: >-
+  Ihr Schutz-Eintrag gegen gefälschte E-Mails ist fehlerhaft und wird von Empfängern nicht
+  beachtet.
+beschreibung: >-
+  Der DMARC-Eintrag unter _dmarc.{domain} enthält keine gültige Richtlinie (p=none,
+  p=quarantine oder p=reject) oder ist syntaktisch fehlerhaft.
+auswirkung: >-
+  Empfänger verwerfen ungültige DMARC-Einträge. Gefälschte E-Mails mit dieser Domain im
+  sichtbaren Absender werden zugestellt, und es gehen keine Berichte ein.
+empfehlung: >-
+  Eintrag korrigieren, z. B. «v=DMARC1; p=none; rua=mailto:dmarc@{domain}», und danach
+  schrittweise auf p=quarantine und p=reject verschärfen.
+pruefen: dig TXT _dmarc.{domain} +short
+referenzen:
+  - RFC 7489, Abschnitt 6.3 (Syntax)
+  - "https://www.rfc-editor.org/rfc/rfc7489#section-6.3"

@@ -1,0 +1,27 @@
+id: DKIM-SCHWACH
+version: 1
+status: geprueft
+kategorie: E-Mail
+schweregrad: mittel
+cwe: CWE-326
+titel:
+  de: DKIM-Schlüssel zu kurz (unter 2048 Bit)
+  en: DKIM key too short (below 2048 bits)
+  es: Clave DKIM demasiado corta (menos de 2048 bits)
+geschaeftsleitung: >-
+  Die digitale Unterschrift Ihrer E-Mails verwendet einen zu kurzen Schlüssel. Er gilt
+  nicht mehr als sicher.
+beschreibung: >-
+  Der öffentliche DKIM-Schlüssel eines Selektors von {domain} ist kürzer als 2048 Bit
+  (typisch 1024 Bit oder weniger).
+auswirkung: >-
+  Schlüssel mit 1024 Bit gelten als Mindestmass und werden mittelfristig nicht mehr
+  empfohlen; noch kürzere Schlüssel lassen viele Empfänger nicht mehr gelten. Mit einem
+  geknackten Schlüssel liessen sich E-Mails mit gültiger Signatur fälschen.
+empfehlung: >-
+  Beim E-Mail-Anbieter einen neuen Schlüssel mit 2048 Bit erzeugen, unter einem neuen
+  Selektor veröffentlichen und den alten Schlüssel nach der Umstellung widerrufen.
+pruefen: dig TXT <selektor>._domainkey.{domain} +short
+referenzen:
+  - RFC 8301 – Cryptographic Algorithm and Key Usage Update to DKIM
+  - "https://www.rfc-editor.org/rfc/rfc8301"

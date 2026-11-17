@@ -1,0 +1,26 @@
+id: DMARC-SP-NONE
+version: 1
+status: geprueft
+kategorie: E-Mail
+schweregrad: mittel
+cwe: CWE-290
+titel:
+  de: Subdomains nicht durch DMARC geschützt (sp=none)
+  en: Subdomains not protected by DMARC (sp=none)
+  es: Subdominios sin protección DMARC (sp=none)
+geschaeftsleitung: >-
+  Ihre Hauptadresse ist geschützt, aber Adressen wie rechnung.ihre-firma.ch nicht.
+  Betrüger können solche Absender frei fälschen.
+beschreibung: >-
+  Der DMARC-Eintrag der Domain {domain} enthält «sp=none». Für alle Subdomains ohne
+  eigenen DMARC-Eintrag gilt damit nur der Beobachtungsmodus.
+auswirkung: >-
+  Angreifer können E-Mails z. B. von rechnung.{domain} oder support.{domain} fälschen;
+  diese werden wie ohne DMARC zugestellt und wirken für Empfänger glaubwürdig.
+empfehlung: >-
+  sp=none entfernen (dann gilt p= auch für Subdomains) oder sp=reject setzen. Subdomains,
+  die E-Mails senden, mit eigenem SPF/DKIM ausstatten.
+pruefen: dig TXT _dmarc.{domain} +short
+referenzen:
+  - RFC 7489, Abschnitt 6.3 (sp)
+  - "https://www.rfc-editor.org/rfc/rfc7489#section-6.3"

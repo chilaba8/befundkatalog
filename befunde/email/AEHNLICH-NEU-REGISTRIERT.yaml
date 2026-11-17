@@ -1,0 +1,28 @@
+id: AEHNLICH-NEU-REGISTRIERT
+version: 1
+status: geprueft
+kategorie: E-Mail
+schweregrad: hoch
+cwe: CWE-451
+titel:
+  de: Ähnliche Domain mit E-Mail kürzlich registriert
+  en: Recently registered look-alike domain with mail
+  es: Dominio parecido con correo registrado recientemente
+geschaeftsleitung: >-
+  Vor kurzem hat jemand eine Domain registriert, die fast wie Ihre aussieht, und sie für
+  E-Mails eingerichtet. Das ist ein typisches Zeichen für einen geplanten Betrug.
+beschreibung: >-
+  Eine Tippfehler-Variante von {domain} mit MX-Eintrag wurde in den letzten 90 Tagen
+  registriert (Registrierdatum per RDAP).
+auswirkung: >-
+  Frisch registrierte Doppelgänger-Domains werden oft gezielt für Rechnungs- und
+  CEO-Betrug vorbereitet. SPF, DKIM und DMARC schützen nicht, weil die E-Mails von der
+  fremden Domain korrekt authentifiziert sind.
+empfehlung: >-
+  Sofort Buchhaltung und wichtige Kunden warnen (Kontowechsel nur nach Rückruf über
+  bekannte Nummer). Inhaber klären, den Fall dem BACS melden und bei Missbrauch beim
+  Registrar die Sperrung beantragen.
+pruefen: whois <variante> && dig MX <variante> +short
+referenzen:
+  - "BACS – Meldeformular für Cybervorfälle (https://www.ncsc.admin.ch)"
+  - RFC 9083 – RDAP

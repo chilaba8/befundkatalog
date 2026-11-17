@@ -1,0 +1,28 @@
+id: SHODAN-FERNZUGRIFF
+version: 1
+status: geprueft
+kategorie: Netzwerk
+schweregrad: kritisch
+cwe: CWE-668
+titel:
+  de: Fernzugriff direkt aus dem Internet erreichbar (z. B. RDP)
+  en: Remote access exposed to the internet (e.g. RDP)
+  es: Acceso remoto expuesto a Internet (p. ej. RDP)
+geschaeftsleitung: >-
+  Ein Zugang zur Fernsteuerung Ihrer Computer ist aus dem ganzen Internet erreichbar. Das
+  ist einer der häufigsten Wege, wie Erpressungstrojaner in Firmen gelangen.
+beschreibung: >-
+  Für eine IP-Adresse von {domain} meldet Shodan offene Fernzugriffsdienste (z. B. RDP
+  3389, VNC 5900, Telnet 23).
+auswirkung: >-
+  Solche Dienste werden laufend automatisiert angegriffen (Passwort-Raten, bekannte
+  Lücken). Ein erfolgreicher Zugriff führt oft direkt zu Datendiebstahl und
+  Verschlüsselung durch Ransomware.
+empfehlung: >-
+  Dienst in der Firewall für das Internet sperren und nur über VPN mit
+  Mehrfaktor-Anmeldung erreichbar machen. Danach Anmeldeprotokolle auf fremde Zugriffe
+  prüfen.
+pruefen: "nmap -Pn -p 3389,5900,23 <ip>   # nur mit Einverständnis des Inhabers"
+referenzen:
+  - "BACS – Empfehlungen zu Fernzugriff und Ransomware (https://www.ncsc.admin.ch)"
+  - "CISA – #StopRansomware Guide"

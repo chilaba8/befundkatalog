@@ -1,0 +1,29 @@
+id: SPF-ZU-VIELE-LOOKUPS
+version: 1
+status: geprueft
+kategorie: E-Mail
+schweregrad: hoch
+cwe: CWE-290
+titel:
+  de: SPF überschreitet die Grenze von 10 DNS-Abfragen
+  en: SPF exceeds the 10 DNS lookup limit
+  es: SPF supera el límite de 10 consultas DNS
+geschaeftsleitung: >-
+  Ihr Eintrag ist so lang geworden, dass viele Empfänger ihn als ungültig verwerfen. Damit
+  schützt er nicht mehr – und echte E-Mails können im Spam landen.
+beschreibung: >-
+  Die Auswertung des SPF-Eintrags von {domain} benötigt mehr als 10 DNS-Abfragen (include,
+  a, mx, ptr, exists, redirect – auch in verschachtelten Einträgen). RFC 7208 schreibt
+  dann das Ergebnis «permerror» vor.
+auswirkung: >-
+  Empfänger, die die Grenze durchsetzen, behandeln SPF als fehlgeschlagen. DMARC hängt
+  dann allein von DKIM ab; legitime E-Mails ohne passende DKIM-Signatur werden abgewiesen
+  oder als Spam markiert.
+empfehlung: >-
+  Nicht mehr genutzte include-Einträge entfernen, Dienste mit eigener Subdomain (z. B.
+  news.{domain}) betreiben oder Einträge zusammenfassen (SPF-Flattening, nur mit
+  Überwachung der IP-Änderungen).
+pruefen: dig TXT {domain} +short | grep spf1
+referenzen:
+  - RFC 7208, Abschnitt 4.6.4 (DNS-Abfragegrenzen)
+  - "https://www.rfc-editor.org/rfc/rfc7208#section-4.6.4"

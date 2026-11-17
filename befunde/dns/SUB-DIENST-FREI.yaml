@@ -1,0 +1,27 @@
+id: SUB-DIENST-FREI
+version: 1
+status: geprueft
+kategorie: DNS
+schweregrad: mittel
+cwe: CWE-672
+titel:
+  de: Subdomain zeigt Fehlerseite eines Cloud-Dienstes (möglicherweise übernehmbar)
+  en: Subdomain shows unclaimed cloud service page (possible takeover)
+  es: Subdominio muestra la página de error de un servicio cloud (posible takeover)
+geschaeftsleitung: >-
+  Eine Adresse Ihrer Domain zeigt auf einen Cloud-Dienst, den Sie nicht mehr nutzen. Ein
+  Angreifer könnte diese Adresse möglicherweise übernehmen.
+beschreibung: >-
+  Eine Subdomain von {domain} verweist per CNAME auf einen Cloud-Dienst und zeigt dessen
+  typische Meldung für nicht vergebene Namen (z. B. «There isn't a GitHub Pages site
+  here»).
+auswirkung: >-
+  Bei vielen Anbietern kann ein Dritter den Namen neu beanspruchen und dann unter der
+  echten Firmendomain Inhalte ausliefern (Phishing, Rufschaden, Cookie-Diebstahl).
+empfehlung: >-
+  Manuell prüfen, ob der Dienst noch genutzt wird. Wenn nicht: DNS-Eintrag löschen; wenn
+  ja: den Namen beim Anbieter wieder beanspruchen.
+pruefen: "dig CNAME <subdomain>.{domain} +short && curl -s https://<subdomain>.{domain}/ | head"
+referenzen:
+  - OWASP WSTG – Test for Subdomain Takeover (WSTG-CONF-10)
+  - "https://github.com/EdOverflow/can-i-take-over-xyz"

@@ -1,0 +1,25 @@
+id: DNSBL-GELISTET
+version: 1
+status: geprueft
+kategorie: E-Mail
+schweregrad: mittel
+titel:
+  de: Mailserver auf einer Spam-Sperrliste
+  en: Mail server listed on a DNS blocklist
+  es: Servidor de correo en una lista negra de spam
+geschaeftsleitung: >-
+  Einer Ihrer Mailserver steht auf einer Liste bekannter Spam-Absender. Ihre E-Mails
+  kommen deshalb bei manchen Empfängern nicht an.
+beschreibung: >-
+  Mindestens eine IP-Adresse der Mailserver von {domain} ist auf einer öffentlichen
+  Sperrliste (z. B. Spamhaus, SpamCop, PSBL) eingetragen.
+auswirkung: >-
+  Empfänger, die diese Sperrliste nutzen, weisen E-Mails ab oder markieren sie als Spam.
+  Häufige Ursachen sind gehackte Konten, Schadsoftware oder Newsletter ohne Einwilligung.
+empfehlung: >-
+  Ursache klären und beheben (Passwörter ändern, MFA, Versandprotokolle prüfen), dann bei
+  der Liste die Entfernung beantragen. Bei geteilten Servern den Anbieter informieren.
+pruefen: dig +short <umgekehrte-ip>.zen.spamhaus.org
+referenzen:
+  - RFC 5782 – DNS Blacklists and Whitelists
+  - "https://www.rfc-editor.org/rfc/rfc5782"

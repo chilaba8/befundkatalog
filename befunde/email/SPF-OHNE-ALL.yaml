@@ -1,0 +1,27 @@
+id: SPF-OHNE-ALL
+version: 1
+status: geprueft
+kategorie: E-Mail
+schweregrad: mittel
+cwe: CWE-290
+titel:
+  de: SPF-Eintrag ohne Abschluss («all» fehlt)
+  en: SPF record without «all» mechanism
+  es: Registro SPF sin cierre («all»)
+geschaeftsleitung: >-
+  Ihr Eintrag nennt zwar die erlaubten Server, sagt aber nicht, was mit allen anderen
+  geschehen soll. Fremde Server werden deshalb nicht abgewiesen.
+beschreibung: >-
+  Der SPF-Eintrag der Domain {domain} endet ohne «all»-Mechanismus. Für nicht aufgeführte
+  Server ergibt die Prüfung «neutral».
+auswirkung: >-
+  E-Mails von beliebigen fremden Servern bestehen SPF zwar nicht, werden aber auch nicht
+  als unberechtigt gekennzeichnet. Der Schutz vor gefälschten Absendern ist dadurch
+  deutlich schwächer.
+empfehlung: >-
+  Am Ende des SPF-Eintrags «-all» ergänzen (übergangsweise «~all»), nachdem alle legitimen
+  Versanddienste aufgeführt sind.
+pruefen: dig TXT {domain} +short | grep spf1
+referenzen:
+  - RFC 7208, Abschnitt 4.7 (Standardergebnis) und 5.1 (all)
+  - "https://www.rfc-editor.org/rfc/rfc7208#section-4.7"

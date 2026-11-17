@@ -1,0 +1,27 @@
+id: DMARC-PCT
+version: 1
+status: geprueft
+kategorie: E-Mail
+schweregrad: mittel
+cwe: CWE-290
+titel:
+  de: DMARC gilt nur für einen Teil der E-Mails (pct < 100)
+  en: DMARC applies to a fraction of mail only (pct < 100)
+  es: DMARC solo se aplica a una parte del correo (pct < 100)
+geschaeftsleitung: >-
+  Ihr Schutz ist nur teilweise eingeschaltet: Ein Teil der gefälschten E-Mails wird
+  trotzdem zugestellt.
+beschreibung: >-
+  Der DMARC-Eintrag der Domain {domain} enthält «pct=» mit einem Wert unter 100. Die
+  Richtlinie (quarantine/reject) wird nur auf diesen Anteil der fehlgeschlagenen E-Mails
+  angewendet.
+auswirkung: >-
+  Für den restlichen Anteil gilt die nächstschwächere Richtlinie. Angreifer können einfach
+  mehrere E-Mails senden, bis eine durchkommt.
+empfehlung: >-
+  pct= entfernen (Standard ist 100), sobald die Berichte zeigen, dass alle legitimen
+  Versanddienste DMARC bestehen.
+pruefen: dig TXT _dmarc.{domain} +short
+referenzen:
+  - RFC 7489, Abschnitt 6.3 (pct)
+  - "https://www.rfc-editor.org/rfc/rfc7489#section-6.3"

@@ -1,0 +1,27 @@
+id: AEHNLICH-EIGENE-UNGESCHUETZT
+version: 1
+status: geprueft
+kategorie: E-Mail
+schweregrad: mittel
+cwe: CWE-290
+titel:
+  de: Eigene Schutz-Domain ohne SPF/DMARC
+  en: Owned defensive domain without SPF/DMARC
+  es: Dominio defensivo propio sin SPF/DMARC
+geschaeftsleitung: >-
+  Sie besitzen eine ähnliche Domain zum Schutz – aber sie ist selbst nicht abgesichert.
+  Betrüger können damit E-Mails in Ihrem Namen verschicken.
+beschreibung: >-
+  Eine vom Kunden als eigene bestätigte Variante von {domain} hat keinen (strengen) SPF-
+  oder DMARC-Eintrag.
+auswirkung: >-
+  Auch Domains, die nur zum Schutz registriert wurden, lassen sich als Absender fälschen.
+  Ohne «v=spf1 -all» und DMARC p=reject werden solche E-Mails zugestellt.
+empfehlung: >-
+  Domains ohne E-Mail-Nutzung absichern: SPF «v=spf1 -all», DMARC «v=DMARC1; p=reject» und
+  Null-MX «0 .». Domains mit E-Mail wie die Hauptdomain absichern.
+pruefen: dig TXT <variante> +short && dig TXT _dmarc.<variante> +short && dig MX <variante> +short
+referenzen:
+  - RFC 7505 – Null-MX
+  - "https://www.rfc-editor.org/rfc/rfc7505"
+  - M3AAWG – Protecting Parked Domains Best Common Practices

@@ -1,0 +1,25 @@
+id: WEB-ZERT-LAEUFT-AB
+version: 1
+status: geprueft
+kategorie: Web
+schweregrad: niedrig
+titel:
+  de: TLS-Zertifikat läuft bald ab
+  en: TLS certificate expires soon
+  es: El certificado TLS caduca pronto
+geschaeftsleitung: >-
+  Das Sicherheitszertifikat Ihrer Webseite läuft in den nächsten Tagen ab. Danach warnen
+  Browser vor Ihrer Seite.
+beschreibung: >-
+  Das Zertifikat von https://{domain}/ läuft in weniger als 14 Tagen ab. Bei automatisch
+  erneuerten Zertifikaten deutet das auf eine gestörte Erneuerung hin.
+auswirkung: >-
+  Wird das Zertifikat nicht rechtzeitig erneuert, zeigen Browser eine Sicherheitswarnung
+  und automatische Schnittstellen schlagen fehl.
+empfehlung: >-
+  Prüfen, ob die automatische Erneuerung funktioniert (Protokolle des ACME-Clients bzw.
+  beim Hoster), und das Zertifikat rechtzeitig erneuern.
+pruefen: "echo | openssl s_client -connect {domain}:443 -servername {domain} 2>/dev/null | openssl x509 -noout -enddate"
+referenzen:
+  - RFC 8555 – Automatic Certificate Management Environment (ACME)
+  - "https://www.rfc-editor.org/rfc/rfc8555"

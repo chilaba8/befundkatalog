@@ -1,0 +1,27 @@
+id: DKIM-WIDERRUFEN
+version: 1
+status: geprueft
+kategorie: E-Mail
+schweregrad: mittel
+cwe: CWE-345
+titel:
+  de: Nur widerrufene DKIM-Schlüssel gefunden
+  en: Only revoked DKIM keys found
+  es: Solo se encontraron claves DKIM revocadas
+geschaeftsleitung: >-
+  Die digitale Unterschrift Ihrer E-Mails ist abgeschaltet. Empfänger können echte E-Mails
+  schlechter von Fälschungen unterscheiden.
+beschreibung: >-
+  Unter den gefundenen DKIM-Selektoren von {domain} sind nur Schlüssel mit leerem «p=»
+  veröffentlicht, also widerrufen.
+auswirkung: >-
+  E-Mails mit diesen Selektoren bestehen DKIM nicht. DMARC kann sich nur noch auf SPF
+  stützen, das bei Weiterleitungen scheitert.
+empfehlung: >-
+  DKIM beim E-Mail-Anbieter (neu) aktivieren und den aktuellen Selektor veröffentlichen.
+  Mit einer Test-E-Mail prüfen, ob die Kopfzeile «DKIM-Signature» einen gültigen Selektor
+  nennt.
+pruefen: dig TXT <selektor>._domainkey.{domain} +short
+referenzen:
+  - RFC 6376, Abschnitt 3.6.1 (leeres p= = widerrufen)
+  - "https://www.rfc-editor.org/rfc/rfc6376#section-3.6.1"

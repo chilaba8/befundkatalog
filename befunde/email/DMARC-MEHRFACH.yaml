@@ -1,0 +1,25 @@
+id: DMARC-MEHRFACH
+version: 1
+status: geprueft
+kategorie: E-Mail
+schweregrad: hoch
+cwe: CWE-290
+titel:
+  de: Mehrere DMARC-Einträge vorhanden
+  en: Multiple DMARC records
+  es: Varios registros DMARC
+geschaeftsleitung: >-
+  Für Ihre Domain gibt es mehrere Schutz-Einträge, die sich widersprechen. Empfänger
+  ignorieren dann beide – gefälschte E-Mails werden nicht blockiert.
+beschreibung: >-
+  Unter _dmarc.{domain} existiert mehr als ein TXT-Eintrag mit «v=DMARC1».
+auswirkung: >-
+  Laut RFC 7489 wird DMARC bei mehreren Einträgen nicht angewendet. Die Domain ist damit
+  so ungeschützt, als gäbe es keinen DMARC-Eintrag.
+empfehlung: >-
+  Nur EINEN DMARC-Eintrag behalten und die gewünschten Angaben (p=, rua=, sp=) darin
+  zusammenführen.
+pruefen: dig TXT _dmarc.{domain} +short
+referenzen:
+  - RFC 7489, Abschnitt 6.6.3 (Richtlinie ermitteln)
+  - "https://www.rfc-editor.org/rfc/rfc7489#section-6.6.3"

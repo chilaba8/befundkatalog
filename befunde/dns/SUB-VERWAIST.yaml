@@ -1,0 +1,24 @@
+id: SUB-VERWAIST
+version: 1
+status: geprueft
+kategorie: DNS
+schweregrad: niedrig
+cwe: CWE-672
+titel:
+  de: Subdomain zeigt auf ein nicht mehr existierendes Ziel
+  en: Dangling subdomain (CNAME target does not exist)
+  es: Subdominio apunta a un destino inexistente
+geschaeftsleitung: >-
+  Eine Adresse Ihrer Domain zeigt ins Leere. Solche Überbleibsel können je nach Ziel
+  später ausgenutzt werden.
+beschreibung: >-
+  Ein CNAME-Eintrag einer Subdomain von {domain} verweist auf einen Namen, der nicht mehr
+  existiert. Der Dienst ist keinem bekannten übernehmbaren Anbieter zugeordnet.
+auswirkung: >-
+  Wird der Zielname später neu vergeben (z. B. abgelaufene Domain oder freier Cloud-Name),
+  könnte ein Dritter Inhalte unter der Subdomain ausliefern.
+empfehlung: >-
+  Nicht mehr benötigte DNS-Einträge löschen und ein DNS-Inventar pflegen.
+pruefen: dig CNAME <subdomain>.{domain} +short && dig A <ziel> +short
+referenzen:
+  - OWASP WSTG – Test for Subdomain Takeover (WSTG-CONF-10)

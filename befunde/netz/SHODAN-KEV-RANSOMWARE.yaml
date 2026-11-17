@@ -1,0 +1,28 @@
+id: SHODAN-KEV-RANSOMWARE
+version: 1
+status: geprueft
+kategorie: Netzwerk
+schweregrad: kritisch
+cwe: CWE-1395
+titel:
+  de: Sicherheitslücke, die von Ransomware-Gruppen ausgenutzt wird (CISA KEV)
+  en: Vulnerability exploited by ransomware groups (CISA KEV)
+  es: Vulnerabilidad explotada por grupos de ransomware (CISA KEV)
+geschaeftsleitung: >-
+  Auf einem Ihrer Server läuft Software mit einer Lücke, die Erpresserbanden aktiv
+  ausnutzen. Es besteht akute Gefahr.
+beschreibung: >-
+  Für eine IP-Adresse von {domain} meldet Shodan eine Softwareversion mit einer CVE, die
+  im CISA-Katalog «Known Exploited Vulnerabilities» als von Ransomware genutzt markiert
+  ist. Die Version stammt aus dem Banner und ist zu bestätigen.
+auswirkung: >-
+  Solche Lücken werden massenhaft und automatisiert ausgenutzt, oft innerhalb weniger Tage
+  nach Veröffentlichung. Die Folgen: verschlüsselte Daten, Datendiebstahl und Erpressung.
+empfehlung: >-
+  Sofort das Hersteller-Update einspielen oder den Dienst vom Internet trennen. Danach auf
+  Anzeichen eines Einbruchs prüfen (neue Konten, unbekannte Prozesse, Protokolle) – ein
+  Update entfernt keinen bereits eingedrungenen Angreifer.
+pruefen: "https://internetdb.shodan.io/<ip>"
+referenzen:
+  - CISA – Known Exploited Vulnerabilities Catalog
+  - "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
