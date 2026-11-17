@@ -1,6 +1,6 @@
 id: MTASTS-TESTING
 version: 1
-status: entwurf
+status: geprueft
 kategorie: E-Mail
 schweregrad: niedrig
 cwe: CWE-319               # Cleartext Transmission of Sensitive Information

@@ -1,6 +1,6 @@
 id: WEB-COOKIES-UNSICHER
 version: 1
-status: entwurf
+status: geprueft
 kategorie: Web
 schweregrad: niedrig
 cwe: CWE-614               # Sensitive Cookie in HTTPS Session Without 'Secure' Attribute

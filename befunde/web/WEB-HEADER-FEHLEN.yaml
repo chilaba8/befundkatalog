@@ -1,6 +1,6 @@
 id: WEB-HEADER-FEHLEN
 version: 1
-status: entwurf
+status: geprueft
 kategorie: Web
 schweregrad: niedrig
 cwe: CWE-693               # Protection Mechanism Failure

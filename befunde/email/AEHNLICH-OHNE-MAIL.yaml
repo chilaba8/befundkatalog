@@ -1,6 +1,6 @@
 id: AEHNLICH-OHNE-MAIL
 version: 1
-status: entwurf
+status: geprueft
 kategorie: E-Mail
 schweregrad: info
 cwe: CWE-451               # User Interface (UI) Misrepresentation of Critical Information

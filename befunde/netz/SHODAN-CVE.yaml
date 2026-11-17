@@ -1,6 +1,6 @@
 id: SHODAN-CVE
 version: 1
-status: entwurf
+status: geprueft
 kategorie: Netzwerk
 schweregrad: mittel
 cwe: CWE-1395              # Dependency on Vulnerable Third-Party Component

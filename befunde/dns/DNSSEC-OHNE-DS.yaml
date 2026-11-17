@@ -1,6 +1,6 @@
 id: DNSSEC-OHNE-DS
 version: 1
-status: entwurf
+status: geprueft
 kategorie: DNS
 schweregrad: niedrig
 cwe: CWE-345

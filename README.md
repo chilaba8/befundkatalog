@@ -7,8 +7,8 @@ formuliert dieselben Befunde immer wieder neu. Öffentliche Sammlungen gibt es f
 auf Englisch. `befundkatalog` sammelt Befunde in verständlichem Deutsch: technisch für
 den Informatiker und in einem Satz für die Geschäftsleitung.
 
-> Status: 59 Befunde zu E-Mail, DNS, Web und offenen Diensten; 45 davon sprachlich und fachlich
-> geprüft (`status: geprueft`), 14 im Entwurf. Der Katalog wächst – Korrekturen und neue Befunde sind willkommen.
+> Status: 59 Befunde zu E-Mail, DNS, Web und offenen Diensten, sprachlich und fachlich
+> geprüft (`status: geprueft`). Der Katalog wächst – Korrekturen und neue Befunde sind willkommen.
 
 ## Aufbau eines Befunds
 

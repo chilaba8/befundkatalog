@@ -1,6 +1,6 @@
 id: WEB-VERSION-SICHTBAR
 version: 1
-status: entwurf
+status: geprueft
 kategorie: Web
 schweregrad: info
 cwe: CWE-497               # Exposure of Sensitive System Information
