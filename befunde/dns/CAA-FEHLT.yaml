@@ -11,7 +11,7 @@ geschaeftsleitung: >-
   Es ist nicht festgelegt, welche Stellen Sicherheitszertifikate für Ihre Website ausstellen
   dürfen. Das Risiko ist gering, die Korrektur ist ein einziger DNS-Eintrag.
 beschreibung: >-
-  Für {domain} (und die übergeordneten Namen) ist kein CAA-Eintrag vorhanden. Damit darf
+  Für {domain} ist kein CAA-Eintrag vorhanden. Damit darf
   jede öffentliche Zertifizierungsstelle TLS-Zertifikate für {domain} ausstellen.
 auswirkung: >-
   Wird bei einer beliebigen Zertifizierungsstelle die Domain-Validierung umgangen oder

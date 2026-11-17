@@ -19,9 +19,10 @@ auswirkung: >-
   Derzeit kein unmittelbares Risiko für Betrug per E-Mail. Die Domain kann aber für
   gefälschte Webseiten genutzt oder später mit E-Mail ausgestattet werden.
 empfehlung: >-
-  Inhaber der Varianten klären und die Domains regelmässig erneut prüfen. Wichtige
-  Varianten (.ch/.com) möglichst selbst registrieren und als eigene Domain mit Null-MX
-  und «v=spf1 -all» schützen.
+  Inhaber der Varianten klären und die Domains regelmässig erneut prüfen – erhält eine
+  davon einen MX-Eintrag, Buchhaltung warnen. Gehört eine Variante Ihnen, als eigene Domain
+  markieren und mit Null-MX und «v=spf1 -all» schützen. Noch freie wichtige Varianten
+  (.ch/.com) selbst registrieren.
 pruefen: dig MX <variante> +short
 referenzen:
   - BACS – Meldeformular für Cybervorfälle (https://www.ncsc.admin.ch)
