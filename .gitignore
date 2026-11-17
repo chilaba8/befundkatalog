@@ -2,4 +2,4 @@ __pycache__/
 .pytest_cache/
 
 # Kundenberichte (nicht veröffentlichen)
-al_juan.html
+*.html
